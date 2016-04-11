@@ -5,5 +5,5 @@ from . import bd_common
 
 from .. import wishlist
 
-class BDWishlist(wishlist.SWishlist, bd_common.BDCommon):
+class BDWishlist(wishlist.EWishlist, bd_common.BDCommon):
     pass

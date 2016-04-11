@@ -5,7 +5,7 @@ from . import bd_common
 
 from .. import product
 
-class BDProduct(product.SProduct, bd_common.BDCommon):
+class BDProduct(product.EProduct, bd_common.BDCommon):
 
     @classmethod
     def wrap(cls, models, build = True, handler = None, **kwargs):
@@ -23,7 +23,7 @@ class BDProduct(product.SProduct, bd_common.BDCommon):
         )
 
     def unwrap(self, **kwargs):
-        result = product.SProduct.unwrap(self, **kwargs)
+        result = product.EProduct.unwrap(self, **kwargs)
         result.update(
             short_description = self.name
         )

@@ -5,5 +5,5 @@ from . import bd_common
 
 from .. import state
 
-class BDState(state.SState, bd_common.BDCommon):
+class BDState(state.EState, bd_common.BDCommon):
     pass

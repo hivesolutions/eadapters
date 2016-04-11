@@ -5,5 +5,5 @@ from . import bd_common
 
 from .. import payment_method
 
-class BDPaymentMethod(payment_method.SPaymentMethod, bd_common.BDCommon):
+class BDPaymentMethod(payment_method.EPaymentMethod, bd_common.BDCommon):
     pass

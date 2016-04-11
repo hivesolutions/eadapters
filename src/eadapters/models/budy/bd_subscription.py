@@ -5,7 +5,7 @@ from . import bd_common
 
 from .. import subscription
 
-class BDSubscription(subscription.SSubscription, bd_common.BDCommon):
+class BDSubscription(subscription.ESubscription, bd_common.BDCommon):
 
     @bd_common.handle_error
     def create_s(self):

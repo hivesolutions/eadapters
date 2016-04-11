@@ -7,7 +7,7 @@ from . import bd_common
 
 from .. import voucher
 
-class BDVoucher(voucher.SVoucher, bd_common.BDCommon):
+class BDVoucher(voucher.EVoucher, bd_common.BDCommon):
 
     key = appier.field()
 

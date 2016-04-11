@@ -5,5 +5,5 @@ from . import bd_common
 
 from .. import payment
 
-class BDPayment(payment.SPayment, bd_common.BDCommon):
+class BDPayment(payment.EPayment, bd_common.BDCommon):
     pass

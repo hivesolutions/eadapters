@@ -9,7 +9,7 @@ from . import bd_bag_line
 
 from .. import order
 
-class BDOrder(order.SOrder, bd_common.BDCommon):
+class BDOrder(order.EOrder, bd_common.BDCommon):
 
     key = appier.field()
 
