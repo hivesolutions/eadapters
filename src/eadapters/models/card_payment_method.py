@@ -5,7 +5,7 @@ import appier
 
 from . import payment_method
 
-class SCardPaymentMethod(payment_method.SPaymentMethod):
+class ECardPaymentMethod(payment_method.EPaymentMethod):
 
     @classmethod
     def ensure_method(cls, payment_method):

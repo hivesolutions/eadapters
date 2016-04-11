@@ -10,7 +10,7 @@ from . import bd_address
 
 from .. import account
 
-class BDAccount(account.SAccount, bd_common.BDCommon):
+class BDAccount(account.EAccount, bd_common.BDCommon):
 
     @classmethod
     def wrap(cls, models, build = True, handler = None, **kwargs):

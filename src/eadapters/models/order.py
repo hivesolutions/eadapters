@@ -6,7 +6,7 @@ import datetime
 
 from . import base
 
-class SOrder(base.SBase):
+class EOrder(base.EBase):
 
     status = appier.field()
 

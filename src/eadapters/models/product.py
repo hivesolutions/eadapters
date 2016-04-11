@@ -5,7 +5,7 @@ import appier
 
 from . import base
 
-class SProduct(base.SBase):
+class EProduct(base.EBase):
 
     SIZE_ALIAS = dict(
         thumbnail = ("70",),
@@ -40,7 +40,7 @@ class SProduct(base.SBase):
 
     @classmethod
     def _build(cls, model, map):
-        super(SProduct, cls)._build(model, map)
+        super(EProduct, cls)._build(model, map)
         model["value"] = model["name"]
         model["thumbnail"] = cls._get_image(model, size = "thumbnail")
         model["thumbnail"] = model["thumbnail"] or cls._get_image(

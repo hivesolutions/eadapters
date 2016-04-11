@@ -5,7 +5,7 @@ import appier
 
 from . import base
 
-class SPaymentMethod(base.SBase):
+class EPaymentMethod(base.EBase):
 
     type = appier.field()
 

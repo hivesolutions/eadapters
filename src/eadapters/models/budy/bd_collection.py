@@ -5,5 +5,5 @@ from . import bd_common
 
 from .. import collection
 
-class BDCollection(collection.SCollection, bd_common.BDCommon):
+class BDCollection(collection.ECollection, bd_common.BDCommon):
     pass

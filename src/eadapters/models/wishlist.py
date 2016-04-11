@@ -5,7 +5,7 @@ import appier
 
 from . import base
 
-class SWishlist(base.SBase):
+class EWishlist(base.EBase):
 
     currency = appier.field()
 

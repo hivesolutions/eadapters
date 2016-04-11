@@ -3,5 +3,5 @@
 
 from . import base
 
-class SBrand(base.SBase):
+class EBrand(base.EBase):
     pass

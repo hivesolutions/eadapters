@@ -5,7 +5,7 @@ from . import bd_common
 
 from .. import bag_line
 
-class BDBagLine(bag_line.SBagLine, bd_common.BDCommon):
+class BDBagLine(bag_line.EBagLine, bd_common.BDCommon):
 
     @classmethod
     def wrap(cls, models, build = True, handler = None, **kwargs):
@@ -27,6 +27,6 @@ class BDBagLine(bag_line.SBagLine, bd_common.BDCommon):
         )
 
     def unwrap(self, **kwargs):
-        result = bag_line.SBagLine.unwrap(self, **kwargs)
+        result = bag_line.EBagLine.unwrap(self, **kwargs)
         if hasattr(self, "meta") and self.meta: result["attributes"] = self.bd_json_e(self.meta, sort_keys = True)
         return result

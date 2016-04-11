@@ -5,6 +5,6 @@ import appier
 
 from . import base
 
-class SCollection(base.SBase):
+class ECollection(base.EBase):
 
     name = appier.field()

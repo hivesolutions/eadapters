@@ -5,7 +5,7 @@ from . import bd_common
 
 from .. import country
 
-class BDCountry(country.SCountry, bd_common.BDCommon):
+class BDCountry(country.ECountry, bd_common.BDCommon):
 
     @classmethod
     @bd_common.handle_error

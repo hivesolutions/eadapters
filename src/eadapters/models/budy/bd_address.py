@@ -7,7 +7,7 @@ from . import bd_common
 
 from .. import address
 
-class BDAddress(address.SAddress, bd_common.BDCommon):
+class BDAddress(address.EAddress, bd_common.BDCommon):
 
     key = appier.field()
 

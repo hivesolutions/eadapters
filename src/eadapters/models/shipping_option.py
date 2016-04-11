@@ -3,5 +3,5 @@
 
 from . import base
 
-class SShippingOption(base.SBase):
+class EShippingOption(base.EBase):
     pass

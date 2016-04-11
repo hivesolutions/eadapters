@@ -5,5 +5,5 @@ from . import bd_common
 
 from .. import city
 
-class BDCity(city.SCity, bd_common.BDCommon):
+class BDCity(city.ECity, bd_common.BDCommon):
     pass

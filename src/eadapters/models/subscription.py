@@ -5,6 +5,6 @@ import appier
 
 from . import base
 
-class SSubscription(base.SBase):
+class ESubscription(base.EBase):
 
     email = appier.field()

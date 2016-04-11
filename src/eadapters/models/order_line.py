@@ -5,7 +5,7 @@ import appier
 
 from . import base
 
-class SOrderLine(base.SBase):
+class EOrderLine(base.EBase):
 
     quantity = appier.field(
         type = float
@@ -30,7 +30,7 @@ class SOrderLine(base.SBase):
 
     @classmethod
     def _build(cls, model, map):
-        super(SOrderLine, cls)._build(model, map)
+        super(EOrderLine, cls)._build(model, map)
 
         meta = model.get("meta", {}) or {}
         image_url = meta.get("image_url", None)

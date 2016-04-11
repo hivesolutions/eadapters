@@ -5,7 +5,7 @@ import appier
 
 from . import base
 
-class SCreditCard(base.SBase):
+class ECreditCard(base.EBase):
 
     card_name = appier.field()
 
@@ -23,7 +23,7 @@ class SCreditCard(base.SBase):
 
     @classmethod
     def validate(cls):
-        return super(SCreditCard, cls).validate() + [
+        return super(ECreditCard, cls).validate() + [
             appier.not_null("card_name"),
             appier.not_empty("card_name"),
 

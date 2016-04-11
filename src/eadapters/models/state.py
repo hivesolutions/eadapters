@@ -3,5 +3,5 @@
 
 from . import base
 
-class SState(base.SBase):
+class EState(base.EBase):
     pass

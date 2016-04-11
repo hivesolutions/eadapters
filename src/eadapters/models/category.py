@@ -3,5 +3,5 @@
 
 from . import base
 
-class SCategory(base.SBase):
+class ECategory(base.EBase):
     pass

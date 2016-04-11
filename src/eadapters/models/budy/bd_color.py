@@ -5,5 +5,5 @@ from . import bd_common
 
 from .. import color
 
-class BDColor(color.SColor, bd_common.BDCommon):
+class BDColor(color.EColor, bd_common.BDCommon):
     pass

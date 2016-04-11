@@ -5,7 +5,7 @@ import appier
 
 from . import base
 
-class SAccount(base.SBase):
+class EAccount(base.EBase):
 
     username = appier.field()
 
@@ -51,7 +51,7 @@ class SAccount(base.SBase):
 
     @classmethod
     def validate(cls):
-        return super(SAccount, cls).validate() + [
+        return super(EAccount, cls).validate() + [
             appier.not_null("username"),
             appier.not_empty("username"),
             appier.string_gt("username", 3),
@@ -76,7 +76,7 @@ class SAccount(base.SBase):
 
     @classmethod
     def validate_new(cls):
-        return super(SAccount, cls).validate_new() + [
+        return super(EAccount, cls).validate_new() + [
             appier.not_null("password"),
             appier.not_empty("password"),
 

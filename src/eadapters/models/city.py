@@ -3,5 +3,5 @@
 
 from . import base
 
-class SCity(base.SBase):
+class ECity(base.EBase):
     pass

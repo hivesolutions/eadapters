@@ -3,5 +3,5 @@
 
 from . import base
 
-class SVoucher(base.SBase):
+class EVoucher(base.EBase):
     pass

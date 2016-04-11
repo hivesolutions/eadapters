@@ -5,5 +5,5 @@ from . import bd_common
 
 from .. import brand
 
-class BDBrand(brand.SBrand, bd_common.BDCommon):
+class BDBrand(brand.EBrand, bd_common.BDCommon):
     pass

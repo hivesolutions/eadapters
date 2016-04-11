@@ -3,5 +3,5 @@
 
 from . import base
 
-class SReturn(base.SBase):
+class EReturn(base.EBase):
     pass

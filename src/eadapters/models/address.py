@@ -5,7 +5,7 @@ import appier
 
 from . import base
 
-class SAddress(base.SBase):
+class EAddress(base.EBase):
 
     first_name = appier.field()
 
@@ -31,7 +31,7 @@ class SAddress(base.SBase):
 
     @classmethod
     def validate(cls):
-        return super(SAddress, cls).validate() + [
+        return super(EAddress, cls).validate() + [
             appier.not_null("first_name"),
             appier.not_empty("first_name"),
 

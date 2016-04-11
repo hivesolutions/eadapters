@@ -3,5 +3,5 @@
 
 from . import base
 
-class SCredit(base.SBase):
+class ECredit(base.EBase):
     pass

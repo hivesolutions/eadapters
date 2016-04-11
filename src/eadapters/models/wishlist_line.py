@@ -5,7 +5,7 @@ import appier
 
 from . import base
 
-class SWishlistLine(base.SBase):
+class EWishlistLine(base.EBase):
 
     quantity = appier.field(
         type = float

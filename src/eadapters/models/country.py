@@ -6,7 +6,7 @@ import appier
 from . import base
 from . import currency
 
-class SCountry(base.SBase):
+class ECountry(base.EBase):
 
     name = appier.field()
 
@@ -17,7 +17,7 @@ class SCountry(base.SBase):
     locale = appier.field()
 
     def get_currency(self):
-        return currency.SCurrency(
+        return currency.ECurrency(
             name = self.currency_code,
             currency_code = self.currency_code
         )

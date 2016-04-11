@@ -3,5 +3,5 @@
 
 from . import base
 
-class SPayment(base.SBase):
+class EPayment(base.EBase):
     pass

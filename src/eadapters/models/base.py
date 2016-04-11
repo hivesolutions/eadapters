@@ -7,7 +7,7 @@ import datetime
 
 import appier
 
-class SBase(appier.LocalModel):
+class EBase(appier.LocalModel):
 
     id = dict(
         type = int
@@ -17,7 +17,7 @@ class SBase(appier.LocalModel):
 
     @classmethod
     def _build(cls, model, map):
-        super(SBase, cls)._build(model, map)
+        super(EBase, cls)._build(model, map)
         ident_name = cls._ident_name()
         ident = model.get(ident_name, None)
         model["id"] = model.get("id", -1)

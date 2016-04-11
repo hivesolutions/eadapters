@@ -5,7 +5,7 @@ import appier
 
 from . import base
 
-class SBag(base.SBase):
+class EBag(base.EBase):
 
     currency = appier.field()
 

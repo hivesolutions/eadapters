@@ -5,7 +5,7 @@ import appier
 
 from . import base
 
-class SBagLine(base.SBase):
+class EBagLine(base.EBase):
 
     quantity = appier.field(
         type = float
@@ -30,7 +30,7 @@ class SBagLine(base.SBase):
 
     @classmethod
     def _build(cls, model, map):
-        super(SBagLine, cls)._build(model, map)
+        super(EBagLine, cls)._build(model, map)
 
         meta = model.get("meta", {}) or {}
         image_url = meta.get("image_url", None)

@@ -3,5 +3,5 @@
 
 from . import base
 
-class SColor(base.SBase):
+class EColor(base.EBase):
     pass
