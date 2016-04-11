@@ -1,0 +1,28 @@
+sudo: false
+language: python
+python:
+  - "2.6"
+  - "2.7"
+  - "3.2"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "nightly"
+  - "pypy"
+  - "pypy3"
+services: mongodb
+install:
+  - pip install -r requirements.txt
+  - pip install coveralls
+  - pip install twine
+script: if [[ $TRAVIS_PYTHON_VERSION != "3.2" ]]; then coverage run --source=eadapters setup.py test; else python setup.py test; fi
+after_success: if [[ $TRAVIS_PYTHON_VERSION != "3.2" ]]; then coveralls; fi
+deploy:
+  provider: pypi
+  user: joamag
+  password:
+    secure: Uq0N2h2BQEASjD/ktDbxCKK7LVTw0OqfBajR55aia4ghH1K3O6PKPhstLSB/ZL3DmuHmkZ/LvyRwfCNkzQM9BKSF2vYzQowmxvX/uaqdNzrjlVk9jlijiiounzzJ2PzzZNRKH0va52R/TRCyRFUj1CRMOA4kuDEQWObyw2bOAOeWHTxnYlX9N90M2E/QP9aQRUOgF4qlnf3fOVhBHDBquFeEggGzCXaIWM60oPByMr3v3VmyvIAFEgOJoJlvCsK7+s+/XGlU9fNuDrOWSm55KPA4WysFU4ShQgo0Ey8yZoh/IR1IJ/xvMukKc7z84NYT4Qj5oICTlxCaWVhWHtXfFjZo8Ux90u/mXjlGMtQ74JYzuQGF4JpxqvkaAgbvyJG9T1A9l1cYVQh1QlBKkqzPLrYcwK9Blcp5NSQlwNs5kbhdAXp4WnBcI8nvCVCMUvo/4Ui6tFBc7lVaWIPcPamrHZps4ct7qun+qES7i7e/vPDLeE1L9Mg9PC8DtnHfowhJMd0MxWoCiI5iyvokO/JkrGNkBiwb4zUAVJGPwS7VwowBChu8APyYIGltzyok6GmFgbb//WjmokGeQ8OHcuyiEx4GxXG3xWL6kRE/7zIZXRSzA1Pj0G7J0ITh14J/hB9rkQRawP4Bf/7R/eP2PZQ4RIbJ9CFXKkIsb3qukTQaC3s=
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
+    python: "2.7"
