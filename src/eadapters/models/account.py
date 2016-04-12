@@ -34,14 +34,14 @@ class EAccount(base.EBase):
 
     bag = appier.field(
         type = appier.reference(
-            "SBag",
+            "EBag",
             name = "id"
         )
     )
 
     wishlist = appier.field(
         type = appier.reference(
-            "SWishlist",
+            "EWishlist",
             name = "id"
         )
     )

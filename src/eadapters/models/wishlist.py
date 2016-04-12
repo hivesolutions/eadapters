@@ -15,7 +15,7 @@ class EWishlist(base.EBase):
 
     lines = appier.field(
         type = appier.references(
-            "SWishlistLine",
+            "EWishlistLine",
             name = "id"
         )
     )
