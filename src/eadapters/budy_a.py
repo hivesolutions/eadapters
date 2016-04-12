@@ -138,6 +138,7 @@ class BudyAdapter(base.BaseAdapter):
         self.password = password
         self._key_bag()
         if old_key: account.bag.merge_s(old_key)
+        return account
 
     def me_account(self, *args, **kwargs):
         account = models.BDAccount.me()
