@@ -23,7 +23,7 @@ class EBagLine(base.EBase):
 
     product = appier.field(
         type = appier.reference(
-            "SProduct",
+            "EProduct",
             name = "id"
         )
     )

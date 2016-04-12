@@ -23,7 +23,7 @@ class EOrderLine(base.EBase):
 
     product = appier.field(
         type = appier.reference(
-            "SProduct",
+            "EProduct",
             name = "id"
         )
     )

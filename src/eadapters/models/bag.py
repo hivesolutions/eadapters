@@ -15,7 +15,7 @@ class EBag(base.EBase):
 
     lines = appier.field(
         type = appier.references(
-            "SBagLine",
+            "EBagLine",
             name = "id"
         )
     )

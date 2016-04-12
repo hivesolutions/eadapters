@@ -36,21 +36,21 @@ class EOrder(base.EBase):
 
     shipping_address = appier.field(
         type = appier.reference(
-            "SAddress",
+            "EAddress",
             name = "id"
         )
     )
 
     billing_address = appier.field(
         type = appier.reference(
-            "SAddress",
+            "EAddress",
             name = "id"
         )
     )
 
     lines = appier.field(
         type = appier.references(
-            "SOrderLine",
+            "EOrderLine",
             name = "id"
         )
     )
