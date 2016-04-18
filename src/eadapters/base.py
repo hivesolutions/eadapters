@@ -142,6 +142,9 @@ class BaseAdapter(object):
     def set_email_order(self, email, order_id, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def set_referral_order(self, voucher_id, order_id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def set_voucher_order(self, voucher_id, order_id, *args, **kwargs):
         raise appier.NotImplementedError()
 

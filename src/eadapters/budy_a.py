@@ -227,6 +227,11 @@ class BudyAdapter(base.BaseAdapter):
         order = models.BDOrder.get_l(key = order_id)
         order.set_email_s(email)
 
+    def set_referral_order(self, referral_id, order_id, *args, **kwargs):
+        referral = models.BDReferral.get_l(name = referral_id)
+        order = models.BDOrder.get_l(key = order_id)
+        order.set_referral_s(referral)
+
     def set_voucher_order(self, voucher_id, order_id, *args, **kwargs):
         voucher = models.BDVoucher.get_l(key = voucher_id)
         order = models.BDOrder.get_l(key = order_id)

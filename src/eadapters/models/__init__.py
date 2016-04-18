@@ -23,6 +23,7 @@ from . import order_line
 from . import payment_method
 from . import payment
 from . import product
+from . import referral
 from . import shipping_option
 from . import state
 from . import subscription
@@ -54,6 +55,7 @@ from .order_line import EOrderLine
 from .payment_method import EPaymentMethod
 from .payment import EPayment
 from .product import EProduct
+from .referral import EReferral
 from .shipping_option import EShippingOption
 from .state import EState
 from .subscription import ESubscription

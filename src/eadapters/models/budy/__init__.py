@@ -20,6 +20,7 @@ from . import bd_order_line
 from . import bd_payment_method
 from . import bd_payment
 from . import bd_product
+from . import bd_referral
 from . import bd_shipping_option
 from . import bd_state
 from . import bd_subscription
@@ -46,6 +47,7 @@ from .bd_order import BDOrder
 from .bd_order_line import BDOrderLine
 from .bd_payment import BDPayment
 from .bd_product import BDProduct
+from .bd_referral import BDReferral
 from .bd_payment_method import BDPaymentMethod
 from .bd_shipping_option import BDShippingOption
 from .bd_state import BDState
