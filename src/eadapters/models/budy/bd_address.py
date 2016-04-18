@@ -11,12 +11,6 @@ class BDAddress(address.EAddress, bd_common.BDCommon):
 
     key = appier.field()
 
-    @classmethod
-    def validate(cls):
-        return super(BDAddress, cls).validate() + [
-            appier.not_empty("last_name")
-        ]
-
     @bd_common.handle_error
     def create_s(self):
         api = self._get_api()
