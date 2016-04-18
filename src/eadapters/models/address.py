@@ -36,6 +36,7 @@ class EAddress(base.EBase):
             appier.not_empty("first_name"),
 
             appier.not_null("last_name"),
+            appier.not_empty("last_name"),
 
             appier.not_null("address"),
             appier.not_empty("address"),
