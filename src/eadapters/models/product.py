@@ -76,7 +76,7 @@ class EProduct(base.EBase):
         sizes = cls._sizes(size)
         _images = []
         for image in images:
-            if not image: continue
+            if not image or not isinstance(image, dict): continue
             if not image["size"] in sizes: continue
             _images.append(image)
         if sort: _images.sort(key = lambda item: item["order"])
