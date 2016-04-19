@@ -15,6 +15,14 @@ class EOrderLine(base.EBase):
         type = float
     )
 
+    size = appier.field(
+        type = int
+    )
+
+    scale = appier.field(
+        type = int
+    )
+
     meta = appier.field(
         type = dict
     )
