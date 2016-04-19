@@ -12,6 +12,7 @@ class BDProduct(product.EProduct, bd_common.BDCommon):
         def handler(model):
             model.update(
                 name = model["short_description"],
+                code = model["product_id"],
                 currency = "GBP"
             )
 
