@@ -19,3 +19,7 @@ class EBag(base.EBase):
             name = "id"
         )
     )
+
+    @property
+    def quantity(self):
+        return sum([line.quantity for line in self.lines])
