@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import types
+
 import appier
 
 from . import base
@@ -76,7 +78,7 @@ class EProduct(base.EBase):
         sizes = cls._sizes(size)
         _images = []
         for image in images:
-            if not image: continue
+            if not image or not type(image) == types.DictType: continue
             if not image["size"] in sizes: continue
             _images.append(image)
         if sort: _images.sort(key = lambda item: item["order"])
