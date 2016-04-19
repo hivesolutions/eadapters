@@ -22,6 +22,8 @@ class EProduct(base.EBase):
 
     description = appier.field()
 
+    code = appier.field()
+
     size = appier.field(
         type = int
     )
