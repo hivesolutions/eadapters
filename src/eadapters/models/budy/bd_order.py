@@ -5,7 +5,7 @@ import appier
 
 from . import bd_common
 from . import bd_address
-from . import bd_bag_line
+from . import bd_order_line
 
 from .. import order
 
@@ -20,7 +20,7 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
             shipping_address = model.get("shipping_address", {})
             billing_address = model.get("billing_address", {})
             model.update(
-                lines = bd_bag_line.BDBagLine.wrap(lines),
+                lines = bd_order_line.BDOrderLine.wrap(lines),
                 shipping_address = bd_address.BDAddress.wrap(shipping_address) if shipping_address else None,
                 billing_address = bd_address.BDAddress.wrap(billing_address) if billing_address else None
             )
