@@ -55,9 +55,18 @@ class EOrder(base.EBase):
         )
     )
 
+    @classmethod
+    def _build(cls, model, map):
+        super(EOrder, cls)._build(model, map)
+
+        date = model.get("date", None)
+        if not date: return
+        date = datetime.datetime.utcfromtimestamp(date)
+        model["date_s"] = date.strftime("%Y-%m-%d")
+
     @property
     def quantity(self):
-        return len(self.lines)
+        return sum([line.quantity for line in self.lines])
 
     @property
     def date_s(self):
