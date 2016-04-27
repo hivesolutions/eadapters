@@ -55,6 +55,13 @@ class EOrder(base.EBase):
         )
     )
 
+    vouchers = appier.field(
+        type = appier.references(
+            "EVoucher",
+            name = "id"
+        )
+    )
+
     @classmethod
     def _build(cls, model, map):
         super(EOrder, cls)._build(model, map)
@@ -63,6 +70,12 @@ class EOrder(base.EBase):
         if not date: return
         date = datetime.datetime.utcfromtimestamp(date)
         model["date_s"] = date.strftime("%Y-%m-%d")
+
+    @property
+    def voucher(self):
+        if not hasattr(self, "vouchers"): return
+        if not self.vouchers: return
+        return self.vouchers[0]
 
     @property
     def quantity(self):

@@ -5,6 +5,7 @@ import appier
 
 from . import bd_common
 from . import bd_address
+from . import bd_voucher
 from . import bd_order_line
 
 from .. import order
@@ -17,10 +18,12 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
     def wrap(cls, models, build = True, handler = None, **kwargs):
         def handler(model):
             lines = model.get("lines", [])
+            vouchers = model.get("vouchers", [])
             shipping_address = model.get("shipping_address", {})
             billing_address = model.get("billing_address", {})
             model.update(
                 lines = bd_order_line.BDOrderLine.wrap(lines),
+                vouchers = bd_voucher.BDVoucher.wrap(vouchers),
                 shipping_address = bd_address.BDAddress.wrap(shipping_address) if shipping_address else None,
                 billing_address = bd_address.BDAddress.wrap(billing_address) if billing_address else None
             )
