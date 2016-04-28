@@ -139,6 +139,12 @@ class BaseAdapter(object):
     def set_billing_address_order(self, address_id, order_id, account_id = None, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def set_store_shipping_order(self, order_id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def set_store_billing_order(self, order_id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def set_email_order(self, email, order_id, *args, **kwargs):
         raise appier.NotImplementedError()
 

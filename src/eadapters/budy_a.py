@@ -223,6 +223,14 @@ class BudyAdapter(base.BaseAdapter):
         address = address.unwrap(default = True)
         order.set_billing_address_s(address)
 
+    def set_store_shipping_order(self, order_id, *args, **kwargs):
+        order = models.BDOrder.get_l(key = order_id)
+        order.set_store_shipping_s()
+
+    def set_store_billing_order(self, order_id, *args, **kwargs):
+        order = models.BDOrder.get_l(key = order_id)
+        order.set_store_billing_s()
+
     def set_email_order(self, email, order_id, *args, **kwargs):
         order = models.BDOrder.get_l(key = order_id)
         order.set_email_s(email)

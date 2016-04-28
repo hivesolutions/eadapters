@@ -58,6 +58,16 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
         api.set_billing_address_order(self.key, address)
 
     @bd_common.handle_error
+    def set_store_shipping_s(self):
+        api = self._get_api()
+        api.set_store_shipping_order(self.key)
+
+    @bd_common.handle_error
+    def set_store_billing_s(self):
+        api = self._get_api()
+        api.set_store_billing_order(self.key)
+
+    @bd_common.handle_error
     def set_email_s(self, email):
         api = self._get_api()
         api.set_email_order(self.key, dict(email = email))
