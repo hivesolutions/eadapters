@@ -197,6 +197,11 @@ class BudyAdapter(base.BaseAdapter):
         account = models.BDAccount.me()
         return account.orders()
 
+    def empty_bag(self, bag_id = None, *args, **kwargs):
+        bag_id = bag_id or self.bag_key
+        bag = models.BDBag.get_l(key = bag_id)
+        return bag.empty_s()
+
     def create_order_bag(self, bag_id = None, *args, **kwargs):
         bag_id = bag_id or self.bag_key
         bag = models.BDBag.get_l(key = bag_id)

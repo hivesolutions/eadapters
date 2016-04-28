@@ -121,6 +121,9 @@ class BaseAdapter(object):
     def orders_account(self, account_id = None, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def empty_bag(self, bag_id = None, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def create_order_bag(self, bag_id = None, *args, **kwargs):
         raise appier.NotImplementedError()
 
