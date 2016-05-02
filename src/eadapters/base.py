@@ -130,10 +130,13 @@ class BaseAdapter(object):
     def get_order_checkout(self, id, *args, **kwargs):
         return self.get_order(id, *args, **kwargs)
 
-    def pay_order(self, id, payment_data, *args, **kwargs):
+    def get_order(self, id, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def get_order(self, id, *args, **kwargs):
+    def wait_payment_order(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def pay_order(self, id, payment_data, *args, **kwargs):
         raise appier.NotImplementedError()
 
     def set_shipping_address_order(self, address_id, order_id, account_id = None, *args, **kwargs):
