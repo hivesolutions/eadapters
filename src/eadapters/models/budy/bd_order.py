@@ -85,7 +85,7 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
     @bd_common.handle_error
     def wait_payment_s(self):
         api = self._get_api()
-        api.wait_payment_order(self.key)
+        api.wait_payment_order(self.key, {})
 
     @bd_common.handle_error
     def pay_s(self, payment_data):
