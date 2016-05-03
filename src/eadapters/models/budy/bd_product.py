@@ -13,7 +13,7 @@ class BDProduct(product.EProduct, bd_common.BDCommon):
             model.update(
                 name = model["short_description"],
                 code = model["product_id"],
-                currency = "GBP"
+                currency = model.get("currency", "GBP")
             )
 
         return super(BDProduct, cls).wrap(
