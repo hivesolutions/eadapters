@@ -66,10 +66,12 @@ class EOrder(base.EBase):
     def _build(cls, model, map):
         super(EOrder, cls)._build(model, map)
 
-        date = model.get("date", None)
-        if not date: return
-        date = datetime.datetime.utcfromtimestamp(date)
-        model["date_s"] = date.strftime("%Y-%m-%d")
+        date = model["date"]
+        if date: date = datetime.datetime.utcfromtimestamp(date)
+        model["date_s"] = date.strftime("%Y-%m-%d") if date else None
+
+        lines = model.get("lines", [])
+        model["quantity"] = sum([line["quantity"] for line in lines])
 
     @property
     def voucher(self):
