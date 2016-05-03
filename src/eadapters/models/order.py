@@ -14,6 +14,8 @@ class EOrder(base.EBase):
         type = int
     )
 
+    reference = appier.field()
+
     currency = appier.field()
 
     sub_total = appier.field(
