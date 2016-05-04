@@ -286,8 +286,9 @@ class BudyAdapter(base.BaseAdapter):
         size = kwargs.get("size", None)
         scale = kwargs.get("scale", None)
         meta = kwargs.get("meta", None)
+        convert = kwargs.get("convert", True)
         self._ensure_bag()
-        product_id = self._product_id_to_id(product_id)
+        if convert: product_id = self._product_id_to_id(product_id)
         bag_id = bag_id or self.bag_key
         bag = models.BDBag._get(bag_id)
         bag.add_line_s(
@@ -310,7 +311,7 @@ class BudyAdapter(base.BaseAdapter):
             "filters[]" : "product_id:equals:%s" % product_id
         }
         products = api.list_products(**kwargs)
-        if not products: return None
+        if not products: return product_id
         first_product = products[0]
         return first_product["id"]
 
