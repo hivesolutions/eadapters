@@ -46,9 +46,9 @@ class EProduct(base.EBase):
         model["value"] = model["name"]
         for name, size in (
             ("thumbnail", 400),
-            ("thumbnail-2x", 800),
+            ("thumbnail_2x", 800),
             ("large_image", 1000),
-            ("large_image-2x", 1000)
+            ("large_image_2x", 1000)
         ):
             model[name] = cls._get_image(model, size = name)
             model[name] = model[name] or cls._get_image(
