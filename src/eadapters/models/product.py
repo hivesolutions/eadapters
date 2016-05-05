@@ -44,18 +44,18 @@ class EProduct(base.EBase):
     def _build(cls, model, map):
         super(EProduct, cls)._build(model, map)
         model["value"] = model["name"]
-        model["thumbnail"] = cls._get_image(model, size = "thumbnail")
-        model["thumbnail"] = model["thumbnail"] or cls._get_image(
-            model,
-            size = "400",
-            strict = False
-        )
-        model["large_image"] = cls._get_image(model, size = "large_image")
-        model["large_image"] = model["large_image"] or cls._get_image(
-            model,
-            size = "1000",
-            strict = False
-        )
+        for name, size in (
+            ("thumbnail", 400),
+            ("thumbnail-2x", 800),
+            ("large_image", 1000),
+            ("large_image-2x", 1000)
+        ):
+            model[name] = cls._get_image(model, size = name)
+            model[name] = model[name] or cls._get_image(
+                model,
+                size = str(size),
+                strict = False
+            )
 
     @classmethod
     def _sizes(cls, size):
