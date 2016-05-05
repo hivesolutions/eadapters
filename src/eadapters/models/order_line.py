@@ -45,9 +45,7 @@ class EOrderLine(base.EBase):
         if not image_url: return
 
         product = model["product"]
-        thumbnail = product["thumbnail"] or {}
-        large_image = product["large_image"] or {}
-        thumbnail["url"] = image_url
-        large_image["url"] = image_url
-        product["thumbnail"] = thumbnail
-        product["large_image"] = large_image
+        for size in ("thumbnail", "large_image"):
+            image = product[size] or {}
+            image["url"] = image_url
+            product[size] = image
