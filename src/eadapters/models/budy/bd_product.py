@@ -30,7 +30,7 @@ class BDProduct(product.EProduct, bd_common.BDCommon):
         )
         return result
 
-    def get_related(self, *args, **kwargs):
+    def related(self, *args, **kwargs):
         api = self._get_api()
         product = api.get_product_related(self.id, *args, **kwargs)
         return self.wrap(product)

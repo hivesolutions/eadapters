@@ -104,7 +104,7 @@ class BudyAdapter(base.BaseAdapter):
         api = self._get_api()
         product = api.get_product(id)
         product = models.BDProduct.wrap(product)
-        related = product.get_related(*args, **kwargs)
+        related = product.related(*args, **kwargs)
         return related
 
     def list_categories(self, *args, **kwargs):
