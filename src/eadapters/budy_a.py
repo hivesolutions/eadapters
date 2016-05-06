@@ -100,6 +100,13 @@ class BudyAdapter(base.BaseAdapter):
         product = models.BDProduct.wrap(product)
         return product
 
+    def related_product(self, id, *args, **kwargs):
+        api = self._get_api()
+        product = api.get_product(id)
+        product = models.BDProduct.wrap(product)
+        related = product.related(*args, **kwargs)
+        return related
+
     def list_categories(self, *args, **kwargs):
         api = self._get_api()
         categories = api.list_categories(*args, **kwargs)

@@ -55,6 +55,9 @@ class BaseAdapter(object):
     def get_product(self, id, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def related_product(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def list_brands(self, *args, **kwargs):
         raise appier.NotImplementedError()
 
