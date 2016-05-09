@@ -67,6 +67,13 @@ class BDAccount(account.EAccount, bd_common.BDCommon):
 
     @classmethod
     @bd_common.handle_error
+    def avatar_me(cls):
+        api = cls._get_api_g()
+        avatar = api.avatar_me_account()
+        return avatar
+
+    @classmethod
+    @bd_common.handle_error
     def addresses_me(cls):
         api = cls._get_api_g()
         addresses = api.addresses_me_account()

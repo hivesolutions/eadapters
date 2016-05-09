@@ -161,6 +161,10 @@ class BudyAdapter(base.BaseAdapter):
         self._flush_context()
         return account
 
+    def avatar_me_account(self, *args, **kwargs):
+        avatar = models.BDAccount.avatar_me()
+        return avatar
+
     def mandatory_attributes_address(self, country_code, *args, **kwargs):
         return [
             "country",
