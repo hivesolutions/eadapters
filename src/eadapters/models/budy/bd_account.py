@@ -56,6 +56,13 @@ class BDAccount(account.EAccount, bd_common.BDCommon):
         account = api.me_account()
         return cls.wrap(account)
 
+    @classmethod
+    @bd_common.handle_error
+    def avatar_me(cls):
+        api = cls._get_api_g()
+        avatar = api.avatar_me_account()
+        return avatar
+
     @bd_common.handle_error
     def create_s(self):
         api = self._get_api()

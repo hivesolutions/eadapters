@@ -151,6 +151,10 @@ class BudyAdapter(base.BaseAdapter):
         account = models.BDAccount.me()
         return account
 
+    def avatar_me_account(self, *args, **kwargs):
+        avatar = models.BDAccount.avatar_me()
+        return avatar
+
     def create_account(self, account, *args, **kwargs):
         account = models.BDAccount(account.model)
         return account.create_s()

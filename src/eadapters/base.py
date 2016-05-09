@@ -88,6 +88,9 @@ class BaseAdapter(object):
     def me_account(self, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def avatar_me_account(self, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def create_account(self, account, *args, **kwargs):
         raise appier.NotImplementedError()
 
