@@ -65,6 +65,16 @@ class BDAccount(account.EAccount, bd_common.BDCommon):
         account = BDAccount.wrap(account)
         return account
 
+    @bd_common.handle_error
+    def recover_s(self):
+        api = self._get_api()
+        api.recover_account(self.username)
+
+    @bd_common.handle_error
+    def reset_s(self, password, token):
+        api = self._get_api()
+        api.reset_account(self.username, password, token)
+
     @classmethod
     @bd_common.handle_error
     def addresses_me(cls):

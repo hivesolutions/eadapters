@@ -161,6 +161,14 @@ class BudyAdapter(base.BaseAdapter):
         self._flush_context()
         return account
 
+    def recover_password_account(self, username, *args, **kwargs):
+        account = models.BDAccount.get_l(username = username)
+        account.recover_s()
+
+    def reset_password_account(self, username, password, token, *args, **kwargs):
+        account = models.BDAccount.get_l(username = username)
+        account.reset_s(password, token)
+
     def mandatory_attributes_address(self, country_code, *args, **kwargs):
         return [
             "country",
