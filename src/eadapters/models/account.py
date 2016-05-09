@@ -32,6 +32,10 @@ class EAccount(base.EBase):
         initial = False
     )
 
+    avatar = appier.field(
+        type = appier.File
+    )
+
     bag = appier.field(
         type = appier.reference(
             "EBag",
