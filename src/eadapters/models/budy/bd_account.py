@@ -85,7 +85,9 @@ class BDAccount(account.EAccount, bd_common.BDCommon):
         api = self._get_api()
         self.approve()
         account = self.unwrap(default = True)
+        avatar = account.pop("avatar")
         password = account.pop("password")
+        if avatar: account["avatar"] = avatar
         if password: account["password"] = password
         api.update_me_account(account)
         account = api.me_account()
