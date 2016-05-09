@@ -151,10 +151,6 @@ class BudyAdapter(base.BaseAdapter):
         account = models.BDAccount.me()
         return account
 
-    def avatar_me_account(self, *args, **kwargs):
-        avatar = models.BDAccount.avatar_me()
-        return avatar
-
     def create_account(self, account, *args, **kwargs):
         account = models.BDAccount(account.model)
         return account.create_s()
@@ -164,6 +160,10 @@ class BudyAdapter(base.BaseAdapter):
         account = account.update_me_s()
         self._flush_context()
         return account
+
+    def avatar_me_account(self, *args, **kwargs):
+        avatar = models.BDAccount.avatar_me()
+        return avatar
 
     def mandatory_attributes_address(self, country_code, *args, **kwargs):
         return [

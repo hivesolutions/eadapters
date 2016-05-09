@@ -88,9 +88,6 @@ class BaseAdapter(object):
     def me_account(self, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def avatar_me_account(self, *args, **kwargs):
-        raise appier.NotImplementedError()
-
     def create_account(self, account, *args, **kwargs):
         raise appier.NotImplementedError()
 
@@ -101,6 +98,9 @@ class BaseAdapter(object):
         raise appier.NotImplementedError()
 
     def reset_password_account(self, username, password, token, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def avatar_me_account(self, *args, **kwargs):
         raise appier.NotImplementedError()
 
     def create_address(self, address, *args, **kwargs):
