@@ -15,21 +15,28 @@ class BudyAdapter(base.BaseAdapter):
         password = None,
         session_id = None,
         bag_key = None,
-        country = "US",
-        currency = "USD",
-        language = "en-US",
+        country = None,
+        currency = None,
+        language = None,
         context_callback = None,
         *args,
         **kwargs
     ):
         base.BaseAdapter.__init__(self, *args, **kwargs)
-        self.username = username
-        self.password = password
-        self.session_id = session_id
-        self.bag_key = bag_key
-        self.country = country
-        self.currency = currency
-        self.language = language
+        self.username = appier.conf("ADAPTER_USERNAME", None)
+        self.password = appier.conf("ADAPTER_PASSWORD", None)
+        self.session_id = appier.conf("ADAPTER_SESSION_ID", None)
+        self.bag_key = appier.conf("ADAPTER_BAG_KEY", None)
+        self.country = appier.conf("ADAPTER_COUNTRY", "US")
+        self.currency = appier.conf("ADAPTER_CURRENCY", "USD")
+        self.language = appier.conf("ADAPTER_LANGUAGE", "en-US")
+        self.username = username or self.username
+        self.password = password or self.password
+        self.session_id = session_id or self.session_id
+        self.bag_key = bag_key or self.bag_key
+        self.country = country or self.country
+        self.currency = currency or self.currency
+        self.language = language or self.language
         self.context_callback = context_callback
 
     def get_context(self):
