@@ -45,7 +45,8 @@ class EBagLine(base.EBase):
         if not image_url: return
 
         product = model["product"]
-        for size in ("thumbnail", "large_image"):
-            image = product[size] or {}
+        for size in ("thumbnail", "large"):
+            size_i = size + "_image"
+            image = product[size_i] or {}
             image["url"] = image_url
-            product[size] = image
+            product[size_i] = image
