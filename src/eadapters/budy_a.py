@@ -160,7 +160,7 @@ class BudyAdapter(base.BaseAdapter):
 
     def create_account(self, account, *args, **kwargs):
         account = models.BDAccount(account.model)
-        return account.create_s()
+        return account.create_s(*args, **kwargs)
 
     def update_account(self, account, *args, **kwargs):
         account = models.BDAccount(account.model)
