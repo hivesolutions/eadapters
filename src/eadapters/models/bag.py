@@ -20,6 +20,13 @@ class EBag(base.EBase):
         )
     )
 
+    @classmethod
+    def _build(cls, model, map):
+        super(EBag, cls)._build(model, map)
+
+        lines = model.get("lines", [])
+        model["quantity"] = sum([line["quantity"] for line in lines])
+
     @property
     def quantity(self):
         return sum([line.quantity for line in self.lines])

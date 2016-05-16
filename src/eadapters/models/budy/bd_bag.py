@@ -62,6 +62,19 @@ class BDBag(bag.EBag, bd_common.BDCommon):
         return line
 
     @bd_common.handle_error
+    def update_line_s(self, line):
+        api = self._get_api()
+        item = bd_bag_line.BDBagLine(**line)
+        item = item.unwrap(default = True)
+        line = api.add_update_line_bag(
+            self.key,
+            line,
+            increment = False
+        )
+        line = bd_bag_line.BDBagLine.wrap(line)
+        return line
+
+    @bd_common.handle_error
     def remove_line_s(self, line_id):
         api = self._get_api()
         line_id = self.bd_id_e(line_id)
