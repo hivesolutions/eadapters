@@ -25,6 +25,7 @@ class EBag(base.EBase):
         super(EBag, cls)._build(model, map)
 
         lines = model.get("lines", [])
+        if not lines: return
         model["quantity"] = sum([line["quantity"] for line in lines])
 
     @property
