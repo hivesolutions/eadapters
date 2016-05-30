@@ -234,11 +234,11 @@ class BudyAdapter(base.BaseAdapter):
 
     def wait_payment_order(self, id, *args, **kwargs):
         order = models.BDOrder.get_l(key = id)
-        order.wait_payment_s()
+        return order.wait_payment_s()
 
     def pay_order(self, id, payment_data, *args, **kwargs):
         order = models.BDOrder.get_l(key = id)
-        order.pay_s(payment_data)
+        return order.pay_s(payment_data)
 
     def set_shipping_address_order(self, address_id, order_id, account_id = None, *args, **kwargs):
         account = models.BDAccount.me()
