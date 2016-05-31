@@ -107,6 +107,13 @@ class BudyAdapter(base.BaseAdapter):
         product = models.BDProduct.wrap(product)
         return product
 
+    def search_products(self, *args, **kwargs):
+        api = self._get_api()
+        self._normalize(kwargs)
+        products = api.search_products(*args, **kwargs)
+        products = models.BDProduct.wrap(products)
+        return products
+
     def related_product(self, id, *args, **kwargs):
         api = self._get_api()
         product = api.get_product(id)
