@@ -148,6 +148,9 @@ class BaseAdapter(object):
     def end_pay_order(self, id, payment_data, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def cancel_order(self, id, cancel_data, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def set_shipping_address_order(self, address_id, order_id, account_id = None, *args, **kwargs):
         raise appier.NotImplementedError()
 

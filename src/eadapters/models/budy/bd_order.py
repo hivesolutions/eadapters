@@ -96,3 +96,8 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
     def end_pay_s(self, payment_data):
         api = self._get_api()
         return api.end_pay_order(self.key, payment_data)
+
+    @bd_common.handle_error
+    def cancel_s(self, cancel_data):
+        api = self._get_api()
+        return api.cancel_order(self.key, cancel_data)
