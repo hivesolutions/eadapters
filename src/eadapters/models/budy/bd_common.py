@@ -89,12 +89,18 @@ def _handle_error(error, fallback = None, code = 400, encoding = "utf-8"):
     # that the error is string based and implements a read interface)
     data = error.read()
 
+    # tries to retrieve the proper message by decoding the
+    # received bytes using the provided encoding value, in
+    # case it fails sets a default message (as fallback)
+    is_bytes = appier.legacy.is_bytes(data)
+    try: data_s = data.decode(encoding) if is_bytes else str(data)
+    except UnicodeDecodeError: data_s = "Undefined message"
+
     try:
-        # decodes the provided data using the provided
-        # encoding and then tries to load the data as
-        # a json based message (for structure parsing)
-        data_d = data.decode(encoding)
-        data_j = json.loads(data_d)
+        # tries to load the data as a json based message (for
+        # structure parsing) may fail due to bad json structure
+        # if the message data is not json valid
+        data_j = json.loads(data_s)
 
         # tries to retrieve the message from the provided
         # information, as expected by the structure
@@ -102,14 +108,7 @@ def _handle_error(error, fallback = None, code = 400, encoding = "utf-8"):
     except:
         # in case there was an unexpected error interpreting
         # the data then sets the data itself as the message
-        message = data
-
-    # tries to retrieve the proper message by decoding the
-    # received bytes using the provided encoding value, in
-    # case it fails sets a default message (as fallback)
-    is_bytes = appier.legacy.is_bytes(data)
-    try: data_s = data.decode(encoding) if is_bytes else str(data)
-    except UnicodeDecodeError: data_s = "Undefined message"
+        message = data_s
 
     # in case the message is defined special final characters
     # must be removed in order to normalize the message
