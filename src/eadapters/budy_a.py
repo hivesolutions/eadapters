@@ -176,6 +176,9 @@ class BudyAdapter(base.BaseAdapter):
         self._flush_context()
         return account
 
+    def confirm_account(self, token, *args, **kwargs):
+        models.BDAccount.confirm_s(token)
+
     def avatar_me_account(self, *args, **kwargs):
         avatar = models.BDAccount.avatar_me()
         return avatar
