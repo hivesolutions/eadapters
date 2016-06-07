@@ -179,10 +179,6 @@ class BudyAdapter(base.BaseAdapter):
     def confirm_account(self, token, *args, **kwargs):
         models.BDAccount.confirm_s(token)
 
-    def avatar_me_account(self, *args, **kwargs):
-        avatar = models.BDAccount.avatar_me()
-        return avatar
-
     def recover_password_account(self, username, *args, **kwargs):
         account = models.BDAccount.get_l(username = username)
         account.recover_s()
@@ -190,6 +186,10 @@ class BudyAdapter(base.BaseAdapter):
     def reset_password_account(self, username, password, token, *args, **kwargs):
         account = models.BDAccount.get_l(username = username)
         account.reset_s(password, token)
+
+    def avatar_me_account(self, *args, **kwargs):
+        avatar = models.BDAccount.avatar_me()
+        return avatar
 
     def mandatory_attributes_address(self, country_code, *args, **kwargs):
         return [
