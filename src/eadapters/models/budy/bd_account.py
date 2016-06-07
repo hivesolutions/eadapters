@@ -57,11 +57,11 @@ class BDAccount(account.EAccount, bd_common.BDCommon):
         return cls.wrap(account)
 
     @bd_common.handle_error
-    def create_s(self):
+    def create_s(self, pre_enabled = False):
         api = self._get_api()
         self.approve(type = "new")
         account = self.unwrap(default = True)
-        account = api.create_account(account)
+        account = api.create_account(account, pre_enabled = pre_enabled)
         account = BDAccount.wrap(account)
         return account
 

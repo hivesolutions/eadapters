@@ -166,8 +166,9 @@ class BudyAdapter(base.BaseAdapter):
         return account
 
     def create_account(self, account, *args, **kwargs):
+        pre_enabled = kwargs.get("pre_enabled", False)
         account = models.BDAccount(account.model)
-        return account.create_s()
+        return account.create_s(pre_enabled = pre_enabled)
 
     def update_account(self, account, *args, **kwargs):
         account = models.BDAccount(account.model)
