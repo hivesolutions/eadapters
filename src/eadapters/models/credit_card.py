@@ -39,3 +39,11 @@ class ECreditCard(base.EBase):
             appier.not_null("security_code"),
             appier.not_empty("security_code")
         ]
+
+    @classmethod
+    def payment_types(cls):
+        return (
+            "visa",
+            "mastercard",
+            "american_express"
+        )

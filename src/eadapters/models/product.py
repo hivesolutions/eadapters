@@ -47,11 +47,12 @@ class EProduct(base.EBase):
         for name, size in (
             ("thumbnail", 400),
             ("thumbnail_2x", 800),
-            ("large_image", 1000),
-            ("large_image_2x", 1000)
+            ("large", 1000),
+            ("large_2x", 1000)
         ):
-            model[name] = cls._get_image(model, size = name)
-            model[name] = model[name] or cls._get_image(
+            name_i = name + "_image"
+            model[name_i] = cls._get_image(model, size = name)
+            model[name_i] = model[name_i] or cls._get_image(
                 model,
                 size = str(size),
                 strict = False
@@ -85,6 +86,13 @@ class EProduct(base.EBase):
         return _images
 
     @classmethod
+    def _get_measurements(cls, model, sort = True):
+        measurements = model.get("measurements", None)
+        if not measurements: return []
+        if sort: measurements.sort(key = lambda item: item["value"])
+        return measurements
+
+    @classmethod
     def _get_currency(cls, model):
         return "GBP"
 
@@ -98,6 +106,9 @@ class EProduct(base.EBase):
 
     def get_images(self, size = "thumbnail", sort = True):
         return self.__class__._get_images(self.model, size = size, sort = sort)
+
+    def get_measurements(self, sort = True):
+        return self.__class__._get_measurements(self.model, sort = sort)
 
     def get_price(self, currency = "EUR", field = "totalPriceValue"):
         if hasattr(self, "price"): return self.price

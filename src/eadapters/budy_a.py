@@ -15,21 +15,28 @@ class BudyAdapter(base.BaseAdapter):
         password = None,
         session_id = None,
         bag_key = None,
-        country = "US",
-        currency = "USD",
-        language = "en-US",
+        country = None,
+        currency = None,
+        language = None,
         context_callback = None,
         *args,
         **kwargs
     ):
         base.BaseAdapter.__init__(self, *args, **kwargs)
-        self.username = username
-        self.password = password
-        self.session_id = session_id
-        self.bag_key = bag_key
-        self.country = country
-        self.currency = currency
-        self.language = language
+        self.username = appier.conf("ADAPTER_USERNAME", None)
+        self.password = appier.conf("ADAPTER_PASSWORD", None)
+        self.session_id = appier.conf("ADAPTER_SESSION_ID", None)
+        self.bag_key = appier.conf("ADAPTER_BAG_KEY", None)
+        self.country = appier.conf("ADAPTER_COUNTRY", "US")
+        self.currency = appier.conf("ADAPTER_CURRENCY", "USD")
+        self.language = appier.conf("ADAPTER_LANGUAGE", "en-US")
+        self.username = username or self.username
+        self.password = password or self.password
+        self.session_id = session_id or self.session_id
+        self.bag_key = bag_key or self.bag_key
+        self.country = country or self.country
+        self.currency = currency or self.currency
+        self.language = language or self.language
         self.context_callback = context_callback
 
     def get_context(self):
@@ -100,6 +107,13 @@ class BudyAdapter(base.BaseAdapter):
         product = models.BDProduct.wrap(product)
         return product
 
+    def search_products(self, *args, **kwargs):
+        api = self._get_api()
+        self._normalize(kwargs)
+        products = api.search_products(*args, **kwargs)
+        products = models.BDProduct.wrap(products)
+        return products
+
     def related_product(self, id, *args, **kwargs):
         api = self._get_api()
         product = api.get_product(id)
@@ -152,14 +166,22 @@ class BudyAdapter(base.BaseAdapter):
         return account
 
     def create_account(self, account, *args, **kwargs):
+        pre_enabled = kwargs.get("pre_enabled", False)
         account = models.BDAccount(account.model)
-        return account.create_s()
+        return account.create_s(pre_enabled = pre_enabled)
 
     def update_account(self, account, *args, **kwargs):
         account = models.BDAccount(account.model)
         account = account.update_me_s()
         self._flush_context()
         return account
+
+    def confirm_account(self, token, *args, **kwargs):
+        models.BDAccount.confirm_s(token)
+
+    def avatar_me_account(self, *args, **kwargs):
+        avatar = models.BDAccount.avatar_me()
+        return avatar
 
     def recover_password_account(self, username, *args, **kwargs):
         account = models.BDAccount.get_l(username = username)
@@ -231,11 +253,19 @@ class BudyAdapter(base.BaseAdapter):
 
     def wait_payment_order(self, id, *args, **kwargs):
         order = models.BDOrder.get_l(key = id)
-        order.wait_payment_s()
+        return order.wait_payment_s()
 
     def pay_order(self, id, payment_data, *args, **kwargs):
         order = models.BDOrder.get_l(key = id)
-        order.pay_s(payment_data)
+        return order.pay_s(payment_data)
+
+    def end_pay_order(self, id, payment_data, *args, **kwargs):
+        order = models.BDOrder.get_l(key = id)
+        return order.end_pay_s(payment_data)
+
+    def cancel_order(self, id, cancel_data, *args, **kwargs):
+        order = models.BDOrder.get_l(key = id)
+        return order.cancel_s(cancel_data)
 
     def set_shipping_address_order(self, address_id, order_id, account_id = None, *args, **kwargs):
         account = models.BDAccount.me()

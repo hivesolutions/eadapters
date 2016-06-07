@@ -51,17 +51,25 @@ class BDAccount(account.EAccount, bd_common.BDCommon):
 
     @classmethod
     @bd_common.handle_error
+    def confirm_s(cls, token):
+        api = cls._get_api_g()
+        account = api.confirm_account(token)
+        account = cls.wrap(account)
+        return account
+
+    @classmethod
+    @bd_common.handle_error
     def me(cls):
         api = cls._get_api_g()
         account = api.me_account()
         return cls.wrap(account)
 
     @bd_common.handle_error
-    def create_s(self):
+    def create_s(self, pre_enabled = False):
         api = self._get_api()
         self.approve(type = "new")
         account = self.unwrap(default = True)
-        account = api.create_account(account)
+        account = api.create_account(account, pre_enabled = pre_enabled)
         account = BDAccount.wrap(account)
         return account
 
@@ -77,6 +85,13 @@ class BDAccount(account.EAccount, bd_common.BDCommon):
 
     @classmethod
     @bd_common.handle_error
+    def avatar_me(cls):
+        api = cls._get_api_g()
+        avatar = api.avatar_me_account()
+        return avatar
+
+    @classmethod
+    @bd_common.handle_error
     def addresses_me(cls):
         api = cls._get_api_g()
         addresses = api.addresses_me_account()
@@ -88,6 +103,10 @@ class BDAccount(account.EAccount, bd_common.BDCommon):
         api = self._get_api()
         self.approve()
         account = self.unwrap(default = True)
+        avatar = account.pop("avatar")
+        password = account.pop("password")
+        if avatar: account["avatar"] = avatar
+        if password: account["password"] = password
         api.update_me_account(account)
         account = api.me_account()
         return BDAccount.wrap(account)

@@ -55,6 +55,9 @@ class BaseAdapter(object):
     def get_product(self, id, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def search_products(self, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def related_product(self, id, *args, **kwargs):
         raise appier.NotImplementedError()
 
@@ -94,10 +97,16 @@ class BaseAdapter(object):
     def update_account(self, account, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def confirm_account(self, token, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def recover_password_account(self, username, *args, **kwargs):
         raise appier.NotImplementedError()
 
     def reset_password_account(self, username, password, token, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def avatar_me_account(self, *args, **kwargs):
         raise appier.NotImplementedError()
 
     def create_address(self, address, *args, **kwargs):
@@ -140,6 +149,12 @@ class BaseAdapter(object):
         raise appier.NotImplementedError()
 
     def pay_order(self, id, payment_data, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def end_pay_order(self, id, payment_data, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def cancel_order(self, id, cancel_data, *args, **kwargs):
         raise appier.NotImplementedError()
 
     def set_shipping_address_order(self, address_id, order_id, account_id = None, *args, **kwargs):

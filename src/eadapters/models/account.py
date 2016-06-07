@@ -32,6 +32,22 @@ class EAccount(base.EBase):
         initial = False
     )
 
+    avatar = appier.field(
+        type = appier.File
+    )
+
+    facebook_id = appier.field()
+
+    facebook_token = appier.field(
+        private = True
+    )
+
+    google_id = appier.field()
+
+    google_token = appier.field(
+        private = True
+    )
+
     bag = appier.field(
         type = appier.reference(
             "EBag",
@@ -69,9 +85,7 @@ class EAccount(base.EBase):
             appier.is_regex("phone_number", "^\+?[0-9\s]{2,}$"),
 
             appier.equals("password_confirm", "password"),
-            appier.equals("new_password_confirm", "new_password"),
-
-            cls.validate_current_password(validate_new = False)
+            appier.equals("new_password_confirm", "new_password")
         ]
 
     @classmethod
@@ -83,20 +97,6 @@ class EAccount(base.EBase):
             appier.not_null("password_confirm"),
             appier.not_empty("password_confirm")
         ]
-
-    @classmethod
-    def validate_current_password(cls, validate_new = True):
-        def validation(object, ctx):
-            id = object.get("id", None)
-            current_password = object.get("current_password", None)
-            password = object.get("password", None)
-            if not validate_new and id == None: return True
-            if not password: return True
-            if current_password: return True
-            raise appier.exceptions.ValidationInternalError(
-                "current_password", "current password is empty"
-            )
-        return validation
 
     @property
     def full_name(self):
