@@ -36,6 +36,18 @@ class EAccount(base.EBase):
         type = appier.File
     )
 
+    facebook_id = appier.field()
+
+    facebook_token = appier.field(
+        private = True
+    )
+
+    google_id = appier.field()
+
+    google_token = appier.field(
+        private = True
+    )
+
     bag = appier.field(
         type = appier.reference(
             "EBag",

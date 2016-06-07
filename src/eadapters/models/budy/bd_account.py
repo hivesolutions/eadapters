@@ -51,6 +51,14 @@ class BDAccount(account.EAccount, bd_common.BDCommon):
 
     @classmethod
     @bd_common.handle_error
+    def confirm_s(cls, token):
+        api = cls._get_api_g()
+        account = api.confirm_account(token)
+        account = cls.wrap(account)
+        return account
+
+    @classmethod
+    @bd_common.handle_error
     def me(cls):
         api = cls._get_api_g()
         account = api.me_account()

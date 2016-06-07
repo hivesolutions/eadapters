@@ -97,6 +97,9 @@ class BaseAdapter(object):
     def update_account(self, account, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def confirm_account(self, token, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def recover_password_account(self, username, *args, **kwargs):
         raise appier.NotImplementedError()
 
