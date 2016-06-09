@@ -10,6 +10,10 @@ class EOrder(base.EBase):
 
     status = appier.field()
 
+    paid = appier.field(
+        type = bool
+    )
+
     date = appier.field(
         type = int
     )
@@ -88,7 +92,7 @@ class EOrder(base.EBase):
     @property
     def date_s(self):
         return self.get_date_s()
-
+    
     def get_date_s(self, format = "%Y-%m-%d"):
         if not hasattr(self, "date"): return None
         if not self.date: return None
