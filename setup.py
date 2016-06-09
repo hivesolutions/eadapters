@@ -6,7 +6,7 @@ import setuptools
 
 setuptools.setup(
     name = "eadapters",
-    version = "0.2.7",
+    version = "0.2.8",
     author = "Hive Solutions Lda.",
     author_email = "development@hive.pt",
     description = "E-Commerce Adapters",
