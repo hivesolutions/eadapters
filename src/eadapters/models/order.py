@@ -92,7 +92,7 @@ class EOrder(base.EBase):
     @property
     def date_s(self):
         return self.get_date_s()
-    
+
     def get_date_s(self, format = "%Y-%m-%d"):
         if not hasattr(self, "date"): return None
         if not self.date: return None
