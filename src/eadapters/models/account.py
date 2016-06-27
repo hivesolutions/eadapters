@@ -98,6 +98,13 @@ class EAccount(base.EBase):
             appier.not_empty("password_confirm")
         ]
 
+    def pre_validate(self):
+        base.EBase.pre_validate(self)
+        if hasattr(self, "username") and self.username:
+            self.username = self.username.lower()
+        if hasattr(self, "email") and self.email:
+            self.email = self.email.lower()
+
     @property
     def full_name(self):
         name = self.first_name
