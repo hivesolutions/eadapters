@@ -41,11 +41,9 @@ class BDAccount(account.EAccount, bd_common.BDCommon):
             api.login()
             api.key_bag()
             account = api.me_account()
-        except appier.HTTPError:
-            raise appier.OperationalError(
-                message = "Authentication failed",
-                code = 403
-            )
+        except appier.HTTPError as error:
+            bd_common._handle_error(error, code = 403)
+
         account = cls.wrap(account)
         return account
 
