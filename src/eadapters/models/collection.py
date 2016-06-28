@@ -1,10 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import appier
+from . import group
 
-from . import base
-
-class ECollection(base.EBase):
-
-    name = appier.field()
+class ECollection(group.EGroup):
+    pass

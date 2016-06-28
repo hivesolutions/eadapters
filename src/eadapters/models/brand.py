@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from . import base
+from . import group
 
-class EBrand(base.EBase):
+class EBrand(group.EGroup):
     pass

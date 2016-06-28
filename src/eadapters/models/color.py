@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from . import base
+from . import group
 
-class EColor(base.EBase):
+class EColor(group.EGroup):
     pass

@@ -13,6 +13,7 @@ from . import bd_color
 from . import bd_common
 from . import bd_country
 from . import bd_credit
+from . import bd_group
 from . import bd_merchant
 from . import bd_return
 from . import bd_order
@@ -41,6 +42,7 @@ from .bd_color import BDColor
 from .bd_common import BDCommon
 from .bd_country import BDCountry
 from .bd_credit import BDCredit
+from .bd_group import BDGroup
 from .bd_merchant import BDMerchant
 from .bd_return import BDReturn
 from .bd_order import BDOrder

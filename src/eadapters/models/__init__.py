@@ -15,8 +15,9 @@ from . import card_payment_method
 from . import color
 from . import country
 from . import credit_card
-from . import currency
 from . import credit
+from . import currency
+from . import group
 from . import _return
 from . import order
 from . import order_line
@@ -46,8 +47,9 @@ from .card_payment_method import ECardPaymentMethod
 from .color import EColor
 from .country import ECountry
 from .credit_card import ECreditCard
-from .currency import ECurrency
 from .credit import ECredit
+from .currency import ECurrency
+from .group import EGroup
 from .merchant import EMerchant
 from ._return import EReturn
 from .order import EOrder
