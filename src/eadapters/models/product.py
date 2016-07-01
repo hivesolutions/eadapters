@@ -126,3 +126,9 @@ class EProduct(base.EBase):
         if hasattr(self, "gender"): gender = self.gender
         gender = gender or default
         return self.__class__.GENDER_ALIAS.get(gender, gender)
+
+    def is_available(self):
+        if self.quantity_hand == None: return True
+        if self.quantity_hand > 0.0: return True
+        if self.get_measurements(): return True
+        return False
