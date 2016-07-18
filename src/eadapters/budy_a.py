@@ -251,6 +251,10 @@ class BudyAdapter(base.BaseAdapter):
     def get_order(self, id, *args, **kwargs):
         return models.BDOrder._get(id)
 
+    def set_meta_order(self, id, name, value, *args, **kwargs):
+        order = models.BDOrder.get_l(key = id)
+        order.set_meta_s(name, value)
+
     def wait_payment_order(self, id, *args, **kwargs):
         order = models.BDOrder.get_l(key = id)
         return order.wait_payment_s()

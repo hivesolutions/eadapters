@@ -83,6 +83,11 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
         api.set_voucher_order(self.key, voucher)
 
     @bd_common.handle_error
+    def set_meta_s(self, name, value):
+        api = self._get_api()
+        api.set_meta_order(self.key, name, value)
+
+    @bd_common.handle_error
     def wait_payment_s(self):
         api = self._get_api()
         return api.wait_payment_order(self.key, {})

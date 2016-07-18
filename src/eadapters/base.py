@@ -145,6 +145,9 @@ class BaseAdapter(object):
     def get_order(self, id, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def set_meta_order(self, id, name, value, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def wait_payment_order(self, id, *args, **kwargs):
         raise appier.NotImplementedError()
 
