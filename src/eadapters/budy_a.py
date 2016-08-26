@@ -121,6 +121,13 @@ class BudyAdapter(base.BaseAdapter):
         related = product.related(*args, **kwargs)
         return related
 
+    def share_product(self, id, *args, **kwargs):
+        api = self._get_api()
+        product = api.get_product(id)
+        product = models.BDProduct.wrap(product)
+        share = product.share(*args, **kwargs)
+        return share
+
     def list_categories(self, *args, **kwargs):
         api = self._get_api()
         categories = api.list_categories(*args, **kwargs)
