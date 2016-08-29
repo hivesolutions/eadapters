@@ -134,6 +134,18 @@ class BudyAdapter(base.BaseAdapter):
         categories = models.BDCategory.wrap(categories)
         return categories
 
+    def get_category(self, id, *args, **kwargs):
+        api = self._get_api()
+        category = api.get_category(id)
+        category = models.BDCategory.wrap(category)
+        return category
+
+    def slug_category(self, slug, *args, **kwargs):
+        api = self._get_api()
+        category = api.slug_category(slug)
+        category = models.BDCategory.wrap(category)
+        return category
+
     def list_collections(self, *args, **kwargs):
         api = self._get_api()
         collections = api.list_collections(*args, **kwargs)
@@ -146,11 +158,29 @@ class BudyAdapter(base.BaseAdapter):
         collection = models.BDCollection.wrap(collection)
         return collection
 
+    def slug_collection(self, slug, *args, **kwargs):
+        api = self._get_api()
+        collection = api.slug_collection(slug)
+        collection = models.BDCollection.wrap(collection)
+        return collection
+
     def list_colors(self, *args, **kwargs):
         api = self._get_api()
         colors = api.list_colors(*args, **kwargs)
         colors = models.BDColor.wrap(colors)
         return colors
+
+    def get_color(self, id, *args, **kwargs):
+        api = self._get_api()
+        color = api.get_color(id)
+        color = models.BDColor.wrap(color)
+        return color
+
+    def slug_color(self, slug, *args, **kwargs):
+        api = self._get_api()
+        color = api.slug_color(slug)
+        color = models.BDColor.wrap(color)
+        return color
 
     def create_subscription(self, subscription, *args, **kwargs):
         subscription = models.BDSubscription(subscription.model)

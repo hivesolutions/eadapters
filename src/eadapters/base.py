@@ -73,13 +73,28 @@ class BaseAdapter(object):
     def list_categories(self, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def get_category(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def slug_category(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def list_collections(self, *args, **kwargs):
         raise appier.NotImplementedError()
 
     def get_collection(self, id, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def slug_collection(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def list_colors(self, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def get_color(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def slug_color(self, id, *args, **kwargs):
         raise appier.NotImplementedError()
 
     def sort_colors(self, colors):
