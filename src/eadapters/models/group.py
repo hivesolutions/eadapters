@@ -3,9 +3,14 @@
 
 import appier
 
-from . import base
+from . import graphic
 
-class EGroup(base.EBase):
+class EGroup(graphic.EGraphic):
+
+    SIZE_ALIAS = dict(
+        thumbnail = ("70",),
+        large = ("1000",)
+    )
 
     name = appier.field()
 

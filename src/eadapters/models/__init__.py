@@ -17,6 +17,7 @@ from . import country
 from . import credit_card
 from . import credit
 from . import currency
+from . import graphic
 from . import group
 from . import _return
 from . import order
@@ -49,6 +50,7 @@ from .country import ECountry
 from .credit_card import ECreditCard
 from .credit import ECredit
 from .currency import ECurrency
+from .graphic import EGraphic
 from .group import EGroup
 from .merchant import EMerchant
 from ._return import EReturn
