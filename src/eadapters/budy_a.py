@@ -330,6 +330,10 @@ class BudyAdapter(base.BaseAdapter):
         order = models.BDOrder.get_l(key = order_id)
         order.set_store_billing_s()
 
+    def set_ip_address_order(self, ip_address, order_id, *args, **kwargs):
+        order = models.BDOrder.get_l(key = order_id)
+        order.set_ip_address_s(ip_address)
+
     def set_email_order(self, email, order_id, *args, **kwargs):
         order = models.BDOrder.get_l(key = order_id)
         order.set_email_s(email)
