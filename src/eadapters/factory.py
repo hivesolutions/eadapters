@@ -7,17 +7,17 @@ import appier
 
 from . import budy_a
 
-ADAPTERS = dict(
-    budy = budy_a.BudyAdapter
-)
-
-INSTANCES = dict()
-
-LAST_INSTANCE_MAP = dict()
-
-STORE_INSTANCES = False
-
 class Factory(object):
+
+    ADAPTERS = dict(
+        budy = budy_a.BudyAdapter
+    )
+
+    INSTANCES = dict()
+
+    LAST_INSTANCE_MAP = dict()
+
+    STORE_INSTANCES = False
 
     @classmethod
     def get_adapter(cls, name = "local", context = {}, extra = {}):
@@ -32,7 +32,7 @@ class Factory(object):
         # tries to retrieve the adapter, and in case there's a match
         # the context is set in it and the last instance reference is
         # updates so that global operations may use a "new" context
-        adapter = INSTANCES.get(identifier, None) if is_valid else None
+        adapter = cls.INSTANCES.get(identifier, None) if is_valid else None
         if adapter:
             adapter.set_context(context)
             cls._set_instance(adapter)
@@ -40,7 +40,7 @@ class Factory(object):
 
         # tries to retrieve the adapter class from the map that associates
         # the various adapter class name with the adapters
-        adapter_c = ADAPTERS.get(name, None)
+        adapter_c = cls.ADAPTERS.get(name, None)
         if not adapter_c: raise appier.OperationalError(
             message = "Adapter '%s' not found" % name,
             code = 400
@@ -60,7 +60,7 @@ class Factory(object):
 
         # sets the adapters in the global list of instances and then call
         # the set instance method in the current class
-        if STORE_INSTANCES: INSTANCES[identifier] = adapter
+        if cls.STORE_INSTANCES: cls.INSTANCES[identifier] = adapter
         cls._set_instance(adapter)
         return adapter
 
@@ -72,9 +72,9 @@ class Factory(object):
     @classmethod
     def _get_instance(cls):
         tid = threading.current_thread().ident
-        return LAST_INSTANCE_MAP.get(tid)
+        return cls.LAST_INSTANCE_MAP.get(tid)
 
     @classmethod
     def _set_instance(cls, adapter):
         tid = threading.current_thread().ident
-        LAST_INSTANCE_MAP[tid] = adapter
+        cls.LAST_INSTANCE_MAP[tid] = adapter
