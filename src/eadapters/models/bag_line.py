@@ -42,11 +42,17 @@ class EBagLine(base.EBase):
 
         meta = model.get("meta", {}) or {}
         image_url = meta.get("image_url", None)
-        if not image_url: return
+        embossing = meta.get("embossing", None)
 
-        product = model["product"]
-        for size in ("thumbnail", "large"):
-            size_i = size + "_image"
-            image = product[size_i] or {}
-            image["url"] = image_url
-            product[size_i] = image
+        if image_url:
+            product = model["product"]
+            for size in ("thumbnail", "large"):
+                size_i = size + "_image"
+                image = product[size_i] or {}
+                image["url"] = image_url
+                product[size_i] = image
+
+        if embossing:
+            embossing_s = embossing.replace("_", " ")
+            embossing_s = embossing_s.capitalize()
+            meta["embossing_s"] = embossing_s
