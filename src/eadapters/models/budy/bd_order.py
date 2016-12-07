@@ -78,6 +78,11 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
         api.set_email_order(self.key, dict(email = email))
 
     @bd_common.handle_error
+    def set_gift_wrap_s(self, gift_wrap):
+        api = self._get_api()
+        api.set_gift_wrap_order(self.key, dict(gift_wrap = gift_wrap))
+
+    @bd_common.handle_error
     def set_referral_s(self, referral):
         api = self._get_api()
         api.set_referral_order(self.key, referral)
