@@ -52,6 +52,10 @@ class BudyAdapter(base.BaseAdapter):
         )
         return context
 
+    def is_auth(self):
+        api = self._get_api()
+        return api.is_auth()
+
     def get_country(self, *args, **kwargs):
         return self.country
 

@@ -19,6 +19,9 @@ class BaseAdapter(object):
         for name, value in appier.legacy.iteritems(context):
             setattr(self, name, value)
 
+    def is_auth(self):
+        raise appier.NotImplementedError()
+
     def get_country(self, *args, **kwargs):
         raise appier.NotImplementedError()
 
