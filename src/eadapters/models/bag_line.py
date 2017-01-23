@@ -56,3 +56,12 @@ class EBagLine(base.EBase):
             embossing_s = embossing.replace("_", " ")
             embossing_s = embossing_s.capitalize()
             meta["embossing_s"] = embossing_s
+
+    def get_meta(self, normalize = True):
+        if not self.meta: return self.meta
+        meta = dict(self.meta)
+        if not normalize: return meta
+        for extra in ("embossing_s",):
+            if not extra in meta: continue
+            del meta[extra]
+        return meta
