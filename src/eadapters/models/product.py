@@ -40,7 +40,10 @@ class EProduct(graphic.EGraphic):
     def _get_measurements(cls, model, sort = True):
         measurements = model.get("measurements", None)
         if not measurements: return []
-        if sort: measurements.sort(key = lambda item: item["value"])
+        if sort: measurements.sort(
+            key = lambda item:\
+            (item.get("value", -1), item.get("value_s", None))
+        )
         return measurements
 
     @classmethod
