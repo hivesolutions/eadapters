@@ -67,3 +67,7 @@ class EBagLine(base.EBase):
             if not extra in meta: continue
             del meta[extra]
         return meta
+
+    @property
+    def size_v(self):
+        return self.size_s if self.size_s else str(self.size)

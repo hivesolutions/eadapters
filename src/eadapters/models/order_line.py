@@ -52,3 +52,7 @@ class EOrderLine(base.EBase):
             image = product[size_i] or {}
             image["url"] = image_url
             product[size_i] = image
+
+    @property
+    def size_v(self):
+        return self.size_s if self.size_s else str(self.size)
