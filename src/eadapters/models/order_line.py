@@ -19,6 +19,8 @@ class EOrderLine(base.EBase):
         type = int
     )
 
+    size_s = appier.field()
+
     scale = appier.field(
         type = int
     )
