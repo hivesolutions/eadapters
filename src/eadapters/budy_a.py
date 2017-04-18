@@ -394,8 +394,14 @@ class BudyAdapter(base.BaseAdapter):
             quantity,
             size = size,
             scale = scale,
-            meta = meta,
+            meta = meta
         )
+
+    def update_bag_line(self, bag_line, bag_id = None, *args, **kwargs):
+        self._ensure_bag()
+        bag_id = bag_id or self.bag_key
+        bag = models.BDBag.get_l(key = bag_id)
+        bag.update_line_s(bag_line)
 
     def remove_bag_line(self, bag_line_id, bag_id = None, *args, **kwargs):
         self._ensure_bag()
