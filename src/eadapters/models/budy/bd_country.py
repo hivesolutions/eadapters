@@ -17,7 +17,7 @@ class BDCountry(country.ECountry, bd_common.BDCommon):
 
     @classmethod
     def get_c(cls, country_code):
-        countries = cls.list(limit = -1)
+        countries = cls.list(limit = 0)
         for country in countries:
             is_same = country.country_code == country_code
             if not is_same: continue
