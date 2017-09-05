@@ -442,7 +442,7 @@ class BudyAdapter(base.BaseAdapter):
         language = kwargs.get("language", self.language)
         if self.api: return self._apply_api(*args, **kwargs)
 
-        api = budy.Api(
+        api = budy.API(
             username = username,
             password = password,
             session_id = session_id,
