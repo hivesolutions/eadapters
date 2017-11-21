@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import commons
+
 import appier
 
 from . import graphic
@@ -75,6 +77,22 @@ class EProduct(graphic.EGraphic):
         gender = gender or default
         return self.__class__.GENDER_ALIAS.get(gender, gender)
 
+    @property
+    def discount(self):
+        if not self.price: return commons.Decimal(0.0)
+        if not self.price_compare: return commons.Decimal(0.0)
+        return self.price_compare - self.price
+
+    @property
+    def discount_percent(self):
+        if not self.discount: return commons.Decimal(0.0)
+        return self.discount / self.price_compare * commons.Decimal(100.0)
+
+    @property
+    def is_discounted(self):
+        return self.discount > 0.0
+
+    @property
     def is_available(self):
         if self.quantity_hand == None: return True
         if self.quantity_hand > 0.0: return True
