@@ -23,7 +23,6 @@ setuptools.setup(
         "" : os.path.normpath("src")
     },
     install_requires = [
-        "commons_py",
         "budy_api"
     ],
     classifiers = [

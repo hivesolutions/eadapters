@@ -1,8 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-import commons
-
 import appier
 
 from . import graphic
@@ -79,14 +77,14 @@ class EProduct(graphic.EGraphic):
 
     @property
     def discount(self):
-        if not self.price: return commons.Decimal(0.0)
-        if not self.price_compare: return commons.Decimal(0.0)
+        if not self.price: return 0.0
+        if not self.price_compare: return 0.0
         return self.price_compare - self.price
 
     @property
     def discount_percent(self):
-        if not self.discount: return commons.Decimal(0.0)
-        return self.discount / self.price_compare * commons.Decimal(100.0)
+        if not self.discount: return 0.0
+        return self.discount / self.price_compare * 100.0
 
     @property
     def has_stock(self):
