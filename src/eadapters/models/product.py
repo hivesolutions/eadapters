@@ -89,8 +89,10 @@ class EProduct(graphic.EGraphic):
         return self.discount / self.price_compare * commons.Decimal(100.0)
 
     @property
-    def is_discounted(self):
-        return self.discount > 0.0
+    def has_stock(self):
+        if self.quantity_hand == None: return False
+        if self.quantity_hand <= 0.0: return False
+        return True
 
     @property
     def is_available(self):
@@ -98,3 +100,7 @@ class EProduct(graphic.EGraphic):
         if self.quantity_hand > 0.0: return True
         if self.get_measurements(): return True
         return False
+
+    @property
+    def is_discounted(self):
+        return self.discount > 0.0
