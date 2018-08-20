@@ -16,6 +16,7 @@ from . import bd_credit
 from . import bd_group
 from . import bd_merchant
 from . import bd_return
+from . import bd_section
 from . import bd_order
 from . import bd_order_line
 from . import bd_payment_method
@@ -45,6 +46,7 @@ from .bd_credit import BDCredit
 from .bd_group import BDGroup
 from .bd_merchant import BDMerchant
 from .bd_return import BDReturn
+from .bd_section import BDSection
 from .bd_order import BDOrder
 from .bd_order_line import BDOrderLine
 from .bd_payment import BDPayment
