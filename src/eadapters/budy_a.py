@@ -132,6 +132,24 @@ class BudyAdapter(base.BaseAdapter):
         share = product.share(*args, **kwargs)
         return share
 
+    def list_sections(self, *args, **kwargs):
+        api = self._get_api()
+        sections = api.list_sections(*args, **kwargs)
+        sections = models.BDSection.wrap(sections)
+        return sections
+
+    def get_section(self, id, *args, **kwargs):
+        api = self._get_api()
+        section = api.get_section(id)
+        section = models.BDSection.wrap(section)
+        return section
+
+    def slug_section(self, slug, *args, **kwargs):
+        api = self._get_api()
+        section = api.slug_section(slug)
+        section = models.BDSection.wrap(section)
+        return section
+
     def list_categories(self, *args, **kwargs):
         api = self._get_api()
         categories = api.list_categories(*args, **kwargs)

@@ -67,6 +67,18 @@ class BaseAdapter(object):
     def share_product(self, id, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def list_sections(self, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def get_section(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def slug_sections(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def sort_sections(self, colors):
+        colors.sort(key = lambda item: item.name)
+
     def list_brands(self, *args, **kwargs):
         raise appier.NotImplementedError()
 
