@@ -26,6 +26,7 @@ from . import payment_method
 from . import payment
 from . import product
 from . import referral
+from . import season
 from . import section
 from . import shipping_option
 from . import state
@@ -61,6 +62,7 @@ from .payment_method import EPaymentMethod
 from .payment import EPayment
 from .product import EProduct
 from .referral import EReferral
+from .season import ESeason
 from .section import ESection
 from .shipping_option import EShippingOption
 from .state import EState

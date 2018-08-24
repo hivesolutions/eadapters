@@ -85,6 +85,18 @@ class BaseAdapter(object):
     def get_brand(self, id, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def slug_brand(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def list_seasons(self, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def get_season(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def slug_seasons(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def list_categories(self, *args, **kwargs):
         raise appier.NotImplementedError()
 

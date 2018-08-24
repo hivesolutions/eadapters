@@ -150,6 +150,42 @@ class BudyAdapter(base.BaseAdapter):
         section = models.BDSection.wrap(section)
         return section
 
+    def list_brands(self, *args, **kwargs):
+        api = self._get_api()
+        brands = api.list_sections(*args, **kwargs)
+        brands = models.BDBrand.wrap(brands)
+        return brands
+
+    def get_brand(self, id, *args, **kwargs):
+        api = self._get_api()
+        brand = api.get_brand(id)
+        brand = models.BDBrand.wrap(brand)
+        return brand
+
+    def slug_brand(self, slug, *args, **kwargs):
+        api = self._get_api()
+        brand = api.slug_brand(slug)
+        brand = models.BDBrand.wrap(brand)
+        return brand
+
+    def list_seasons(self, *args, **kwargs):
+        api = self._get_api()
+        seasons = api.list_sections(*args, **kwargs)
+        seasons = models.BDSeason.wrap(seasons)
+        return seasons
+
+    def get_season(self, id, *args, **kwargs):
+        api = self._get_api()
+        season = api.get_season(id)
+        season = models.BDSeason.wrap(season)
+        return season
+
+    def slug_season(self, slug, *args, **kwargs):
+        api = self._get_api()
+        season = api.slug_season(slug)
+        season = models.BDSeason.wrap(season)
+        return season
+
     def list_categories(self, *args, **kwargs):
         api = self._get_api()
         categories = api.list_categories(*args, **kwargs)
