@@ -152,7 +152,7 @@ class BudyAdapter(base.BaseAdapter):
 
     def list_brands(self, *args, **kwargs):
         api = self._get_api()
-        brands = api.list_sections(*args, **kwargs)
+        brands = api.list_brands(*args, **kwargs)
         brands = models.BDBrand.wrap(brands)
         return brands
 
