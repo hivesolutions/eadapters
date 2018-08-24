@@ -170,7 +170,7 @@ class BudyAdapter(base.BaseAdapter):
 
     def list_seasons(self, *args, **kwargs):
         api = self._get_api()
-        seasons = api.list_sections(*args, **kwargs)
+        seasons = api.list_seasons(*args, **kwargs)
         seasons = models.BDSeason.wrap(seasons)
         return seasons
 
