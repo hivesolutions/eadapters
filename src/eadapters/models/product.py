@@ -24,6 +24,14 @@ class EProduct(graphic.EGraphic):
 
     code = appier.field()
 
+    supplier_code = appier.field()
+
+    sku = appier.field()
+
+    upc = appier.field()
+
+    ean = appier.field()
+
     size = appier.field(
         type = int
     )
