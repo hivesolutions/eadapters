@@ -13,6 +13,7 @@ class BDProduct(product.EProduct, bd_common.BDCommon):
             model.update(
                 name = model["short_description"],
                 code = model["product_id"],
+                sku = model["sku"] or model["supplier_code"] or model["product_id"],
                 currency = model.get("currency", "GBP")
             )
 
