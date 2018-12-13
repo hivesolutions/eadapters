@@ -80,7 +80,6 @@ class EAccount(base.EBase):
 
             appier.not_null("first_name"),
             appier.not_empty("first_name"),
-            appier.string_gt("first_name", 2),
 
             appier.is_regex("phone_number", "^\+?[0-9\s]{2,}$"),
 
