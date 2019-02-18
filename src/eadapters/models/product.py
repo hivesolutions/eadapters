@@ -15,6 +15,7 @@ class EProduct(graphic.EGraphic):
     GENDER_ALIAS = dict(
         Male = "Men",
         Female = "Women",
+        Child = "Kid",
         Both = "Unisex"
     )
 
