@@ -105,7 +105,7 @@ def _handle_error(error, fallback = None, code = 400, encoding = "utf-8"):
         # tries to retrieve the message from the provided
         # information, as expected by the structure
         message = data_j.get("message", None)
-    except:
+    except Exception:
         # in case there was an unexpected error interpreting
         # the data then sets the data itself as the message
         message = data_s
