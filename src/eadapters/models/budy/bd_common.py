@@ -97,9 +97,9 @@ def _handle_error(error, fallback = None, code = 400, encoding = "utf-8"):
     except UnicodeDecodeError: data_s = "Undefined message"
 
     try:
-        # tries to load the data as a json based message (for
-        # structure parsing) may fail due to bad json structure
-        # if the message data is not json valid
+        # tries to load the data as a JSON based message (for
+        # structure parsing) may fail due to bad JSON structure
+        # if the message data is not JSON valid
         data_j = json.loads(data_s)
 
         # tries to retrieve the message from the provided
