@@ -28,5 +28,6 @@ class BDOrderLine(order_line.EOrderLine, bd_common.BDCommon):
 
     def unwrap(self, **kwargs):
         result = order_line.EOrderLine.unwrap(self, **kwargs)
-        if hasattr(self, "meta") and self.meta: result["attributes"] = self.bd_json_e(self.meta, sort_keys = True)
+        if hasattr(self, "meta") and self.meta:
+            result["attributes"] = self.bd_json_e(self.meta, sort_keys = True)
         return result

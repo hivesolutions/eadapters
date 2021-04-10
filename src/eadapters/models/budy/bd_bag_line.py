@@ -28,5 +28,6 @@ class BDBagLine(bag_line.EBagLine, bd_common.BDCommon):
 
     def unwrap(self, **kwargs):
         result = bag_line.EBagLine.unwrap(self, **kwargs)
-        if hasattr(self, "meta") and self.meta: result["attributes"] = self.bd_json_e(self.meta, sort_keys = True)
+        if hasattr(self, "meta") and self.meta:
+            result["attributes"] = self.bd_json_e(self.meta, sort_keys = True)
         return result
