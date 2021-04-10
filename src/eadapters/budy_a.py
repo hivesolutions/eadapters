@@ -448,7 +448,7 @@ class BudyAdapter(base.BaseAdapter):
             quantity,
             size = size,
             scale = scale,
-            meta = meta,
+            meta = meta
         )
 
     def remove_bag_line(self, bag_line_id, bag_id = None, *args, **kwargs):
