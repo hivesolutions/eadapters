@@ -67,6 +67,9 @@ class BaseAdapter(object):
     def share_product(self, id, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def quote_product(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def list_sections(self, *args, **kwargs):
         raise appier.NotImplementedError()
 
