@@ -23,7 +23,7 @@ setuptools.setup(
         "" : os.path.normpath("src")
     },
     install_requires = [
-        "budy_api"
+        "budy-api"
     ],
     classifiers = [
         "Development Status :: 5 - Production/Stable",
