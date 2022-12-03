@@ -3,7 +3,7 @@
 	<name>eadapters</name>
 	<comment></comment>
 	<projects>
-		<project>budy_api</project>
+		<project>budy-api</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
