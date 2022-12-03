@@ -1,1 +1,1 @@
-budy_api
+budy-api
