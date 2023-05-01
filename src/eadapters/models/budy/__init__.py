@@ -26,6 +26,7 @@ from . import bd_product
 from . import bd_referral
 from . import bd_shipping_option
 from . import bd_state
+from . import bd_store
 from . import bd_subscription
 from . import bd_voucher
 from . import bd_account
@@ -57,6 +58,7 @@ from .bd_referral import BDReferral
 from .bd_payment_method import BDPaymentMethod
 from .bd_shipping_option import BDShippingOption
 from .bd_state import BDState
+from .bd_store import BDStore
 from .bd_subscription import BDSubscription
 from .bd_voucher import BDVoucher
 from .bd_account import BDAccount

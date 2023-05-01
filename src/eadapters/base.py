@@ -52,6 +52,12 @@ class BaseAdapter(object):
     def list_cities(self, country_id, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def list_stores(self, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def get_store(self, id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def list_products(self, *args, **kwargs):
         raise appier.NotImplementedError()
 

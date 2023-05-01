@@ -98,6 +98,19 @@ class BudyAdapter(base.BaseAdapter):
     def list_countries(self, *args, **kwargs):
         return models.BDCountry.list(*args, **kwargs)
 
+    def list_stores(self, *args, **kwargs):
+        api = self._get_api()
+        self._normalize(kwargs)
+        stores = api.list_stores(*args, **kwargs)
+        stores = models.BDStore.wrap(stores)
+        return stores
+
+    def get_store(self, id, *args, **kwargs):
+        api = self._get_api()
+        store = api.get_store(id)
+        store = models.BDStore.wrap(store)
+        return store
+
     def list_products(self, *args, **kwargs):
         api = self._get_api()
         self._normalize(kwargs)

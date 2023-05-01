@@ -30,6 +30,7 @@ from . import season
 from . import section
 from . import shipping_option
 from . import state
+from . import store
 from . import subscription
 from . import voucher
 from . import wishlist_line
@@ -66,6 +67,7 @@ from .season import ESeason
 from .section import ESection
 from .shipping_option import EShippingOption
 from .state import EState
+from .store import EStore
 from .subscription import ESubscription
 from .voucher import EVoucher
 from .wishlist_line import EWishlistLine
