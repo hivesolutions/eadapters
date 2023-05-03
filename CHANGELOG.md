@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* `EStore` and `BStore` entities
-* Support for the `set_store_order()` method
+*
 
 ### Changed
 
@@ -19,6 +18,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 *
+
+## [0.4.2] - 2023-05-03
+
+### Added
+
+* `EStore` and `BStore` entities
+* Support for the `set_store_order()` method
 
 ## [0.4.1] - 2022-06-25
 
