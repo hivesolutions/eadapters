@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 * `EStore` and `BStore` entities
+* Support for the `set_store_order()` method
 
 ### Changed
 

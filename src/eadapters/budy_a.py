@@ -386,6 +386,10 @@ class BudyAdapter(base.BaseAdapter):
         order = models.BDOrder.get_l(key = id)
         return order.cancel_s(cancel_data)
 
+    def set_store_order(self, store_id, order_id, *args, **kwargs):
+        order = models.BDOrder.get_l(key = order_id)
+        order.set_store_s(store_id)
+
     def set_shipping_address_order(self, address_id, order_id, account_id = None, *args, **kwargs):
         account = models.BDAccount.me()
         address = account.get_address(address_id)

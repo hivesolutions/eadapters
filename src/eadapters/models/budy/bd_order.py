@@ -48,6 +48,11 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
         return order
 
     @bd_common.handle_error
+    def set_store_s(self, store_id):
+        api = self._get_api()
+        api.set_store_order(self.key, store_id)
+
+    @bd_common.handle_error
     def set_shipping_address_s(self, address):
         api = self._get_api()
         api.set_shipping_address_order(self.key, address)
