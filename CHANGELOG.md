@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* Initial support for the Store information in `BDOrder`
+*
 
 ### Changed
 
@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 *
+
+## [0.4.3] - 2023-05-09
+
+### Added
+
+* Initial support for the Store information in `BDOrder`
 
 ## [0.4.2] - 2023-05-03
 
