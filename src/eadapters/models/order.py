@@ -68,6 +68,13 @@ class EOrder(base.EBase):
         )
     )
 
+    store = appier.field(
+        type = appier.reference(
+            "EStore",
+            name = "id"
+        )
+    )
+
     @classmethod
     def _build(cls, model, map):
         super(EOrder, cls)._build(model, map)

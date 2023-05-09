@@ -3,6 +3,7 @@
 
 import appier
 
+from . import bd_store
 from . import bd_common
 from . import bd_address
 from . import bd_voucher
@@ -21,11 +22,13 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
             vouchers = model.get("vouchers", [])
             shipping_address = model.get("shipping_address", {})
             billing_address = model.get("billing_address", {})
+            store = model.get("store", {})
             model.update(
                 lines = bd_order_line.BDOrderLine.wrap(lines),
                 vouchers = bd_voucher.BDVoucher.wrap(vouchers),
                 shipping_address = bd_address.BDAddress.wrap(shipping_address) if shipping_address else None,
-                billing_address = bd_address.BDAddress.wrap(billing_address) if billing_address else None
+                billing_address = bd_address.BDAddress.wrap(billing_address) if billing_address else None,
+                store = bd_store.BDStore.wrap(store) if store else None
             )
 
         return super(BDOrder, cls).wrap(
