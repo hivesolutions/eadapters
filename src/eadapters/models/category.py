@@ -3,5 +3,6 @@
 
 from . import group
 
+
 class ECategory(group.EGroup):
     pass

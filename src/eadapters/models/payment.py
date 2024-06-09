@@ -3,5 +3,6 @@
 
 from . import base
 
+
 class EPayment(base.EBase):
     pass

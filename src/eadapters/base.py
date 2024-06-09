@@ -5,6 +5,7 @@ import uuid
 
 import appier
 
+
 class BaseAdapter(object):
 
     def __init__(self, *args, **kwargs):
@@ -13,7 +14,7 @@ class BaseAdapter(object):
         self.uuid = kwargs.get("uuid", str(uuid.uuid4()))
 
     def get_context(self):
-        return dict(uuid = self.uuid)
+        return dict(uuid=self.uuid)
 
     def set_context(self, context):
         for name, value in appier.legacy.iteritems(context):
@@ -86,7 +87,7 @@ class BaseAdapter(object):
         raise appier.NotImplementedError()
 
     def sort_sections(self, colors):
-        colors.sort(key = lambda item: item.name)
+        colors.sort(key=lambda item: item.name)
 
     def list_brands(self, *args, **kwargs):
         raise appier.NotImplementedError()
@@ -134,7 +135,7 @@ class BaseAdapter(object):
         raise appier.NotImplementedError()
 
     def sort_colors(self, colors):
-        colors.sort(key = lambda item: item.name)
+        colors.sort(key=lambda item: item.name)
 
     def create_subscription(self, subscription, *args, **kwargs):
         raise appier.NotImplementedError()
@@ -169,28 +170,28 @@ class BaseAdapter(object):
     def mandatory_attributes_address(self, country_code, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def addresses_account(self, account_id = None, *args, **kwargs):
+    def addresses_account(self, account_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def address_account(self, address_id, account_id = None, *args, **kwargs):
+    def address_account(self, address_id, account_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def create_address_account(self, address, account_id = None, *args, **kwargs):
+    def create_address_account(self, address, account_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def update_address_account(self, address, account_id = None, *args, **kwargs):
+    def update_address_account(self, address, account_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def delete_address_account(self, address_id, account_id = None, *args, **kwargs):
+    def delete_address_account(self, address_id, account_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def orders_account(self, account_id = None, *args, **kwargs):
+    def orders_account(self, account_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def empty_bag(self, bag_id = None, *args, **kwargs):
+    def empty_bag(self, bag_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def create_order_bag(self, bag_id = None, *args, **kwargs):
+    def create_order_bag(self, bag_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
     def get_order_checkout(self, id, *args, **kwargs):
@@ -217,10 +218,14 @@ class BaseAdapter(object):
     def set_store_order(self, store_id, order_id, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def set_shipping_address_order(self, address_id, order_id, account_id = None, *args, **kwargs):
+    def set_shipping_address_order(
+        self, address_id, order_id, account_id=None, *args, **kwargs
+    ):
         raise appier.NotImplementedError()
 
-    def set_billing_address_order(self, address_id, order_id, account_id = None, *args, **kwargs):
+    def set_billing_address_order(
+        self, address_id, order_id, account_id=None, *args, **kwargs
+    ):
         raise appier.NotImplementedError()
 
     def set_store_shipping_order(self, order_id, *args, **kwargs):
@@ -259,44 +264,46 @@ class BaseAdapter(object):
     def confirm_payment(self, transation_id, parameters, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def get_bag(self, bag_id = None, *args, **kwargs):
+    def get_bag(self, bag_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def add_bag_line(self, product_id, quantity = 1, bag_id = None, *args, **kwargs):
+    def add_bag_line(self, product_id, quantity=1, bag_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def update_bag_line(self, bag_line, bag_id = None, *args, **kwargs):
+    def update_bag_line(self, bag_line, bag_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def remove_bag_line(self, line_id, bag_id = None, *args, **kwargs):
+    def remove_bag_line(self, line_id, bag_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def get_wishlist(self, wishlist_id = None, *args, **kwargs):
+    def get_wishlist(self, wishlist_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
     def add_wishlist_line(
         self,
         product_id,
-        quantity = 1,
-        size = None,
-        scale = None,
-        wishlist_id = None,
+        quantity=1,
+        size=None,
+        scale=None,
+        wishlist_id=None,
         *args,
         **kwargs
     ):
         raise appier.NotImplementedError()
 
-    def update_wishlist_line(self, line, wishlist_id = None, *args, **kwargs):
+    def update_wishlist_line(self, line, wishlist_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def remove_wishlist_line(self, line_id, wishlist_id = None, *args, **kwargs):
+    def remove_wishlist_line(self, line_id, wishlist_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
     def _get_api(self, *args, **kwargs):
         raise appier.NotImplementedError()
 
-    def _convert(self, kwargs, old, new, delete = True):
-        if not old in kwargs: return
+    def _convert(self, kwargs, old, new, delete=True):
+        if not old in kwargs:
+            return
         value = kwargs[old]
         kwargs[new] = value
-        if delete: del kwargs[old]
+        if delete:
+            del kwargs[old]

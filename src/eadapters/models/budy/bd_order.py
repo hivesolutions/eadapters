@@ -11,12 +11,13 @@ from . import bd_order_line
 
 from .. import order
 
+
 class BDOrder(order.EOrder, bd_common.BDCommon):
 
     key = appier.field()
 
     @classmethod
-    def wrap(cls, models, build = True, handler = None, **kwargs):
+    def wrap(cls, models, build=True, handler=None, **kwargs):
         def handler(model):
             lines = model.get("lines", [])
             vouchers = model.get("vouchers", [])
@@ -24,19 +25,22 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
             billing_address = model.get("billing_address", {})
             store = model.get("store", {})
             model.update(
-                lines = bd_order_line.BDOrderLine.wrap(lines),
-                vouchers = bd_voucher.BDVoucher.wrap(vouchers),
-                shipping_address = bd_address.BDAddress.wrap(shipping_address) if shipping_address else None,
-                billing_address = bd_address.BDAddress.wrap(billing_address) if billing_address else None,
-                store = bd_store.BDStore.wrap(store) if store else None
+                lines=bd_order_line.BDOrderLine.wrap(lines),
+                vouchers=bd_voucher.BDVoucher.wrap(vouchers),
+                shipping_address=(
+                    bd_address.BDAddress.wrap(shipping_address)
+                    if shipping_address
+                    else None
+                ),
+                billing_address=(
+                    bd_address.BDAddress.wrap(billing_address)
+                    if billing_address
+                    else None
+                ),
+                store=bd_store.BDStore.wrap(store) if store else None,
             )
 
-        return super(BDOrder, cls).wrap(
-            models,
-            build = build,
-            handler = handler,
-            **kwargs
-        )
+        return super(BDOrder, cls).wrap(models, build=build, handler=handler, **kwargs)
 
     @classmethod
     def _ident_name(cls):
@@ -78,17 +82,17 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
     @bd_common.handle_error
     def set_ip_address_s(self, ip_address):
         api = self._get_api()
-        api.set_ip_address_order(self.key, dict(ip_address = ip_address))
+        api.set_ip_address_order(self.key, dict(ip_address=ip_address))
 
     @bd_common.handle_error
     def set_email_s(self, email):
         api = self._get_api()
-        api.set_email_order(self.key, dict(email = email))
+        api.set_email_order(self.key, dict(email=email))
 
     @bd_common.handle_error
     def set_gift_wrap_s(self, gift_wrap):
         api = self._get_api()
-        api.set_gift_wrap_order(self.key, dict(gift_wrap = gift_wrap))
+        api.set_gift_wrap_order(self.key, dict(gift_wrap=gift_wrap))
 
     @bd_common.handle_error
     def set_referral_s(self, referral):

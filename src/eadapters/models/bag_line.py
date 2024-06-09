@@ -5,38 +5,24 @@ import appier
 
 from . import base
 
+
 class EBagLine(base.EBase):
 
-    quantity = appier.field(
-        type = float
-    )
+    quantity = appier.field(type=float)
 
-    total = appier.field(
-        type = float
-    )
+    total = appier.field(type=float)
 
-    size = appier.field(
-        type = int
-    )
+    size = appier.field(type=int)
 
     size_s = appier.field()
 
-    scale = appier.field(
-        type = int
-    )
+    scale = appier.field(type=int)
 
-    meta = appier.field(
-        type = dict
-    )
+    meta = appier.field(type=dict)
 
     meta_j = appier.field()
 
-    product = appier.field(
-        type = appier.reference(
-            "EProduct",
-            name = "id"
-        )
-    )
+    product = appier.field(type=appier.reference("EProduct", name="id"))
 
     @classmethod
     def _build(cls, model, map):
@@ -59,12 +45,15 @@ class EBagLine(base.EBase):
             embossing_s = embossing_s.capitalize()
             meta["embossing_s"] = embossing_s
 
-    def get_meta(self, normalize = True):
-        if not self.meta: return self.meta
+    def get_meta(self, normalize=True):
+        if not self.meta:
+            return self.meta
         meta = dict(self.meta)
-        if not normalize: return meta
+        if not normalize:
+            return meta
         for extra in ("embossing_s",):
-            if not extra in meta: continue
+            if not extra in meta:
+                continue
             del meta[extra]
         return meta
 

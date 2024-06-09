@@ -7,18 +7,19 @@ import appier
 from . import base
 from . import models
 
+
 class BudyAdapter(base.BaseAdapter):
 
     def __init__(
         self,
-        username = None,
-        password = None,
-        session_id = None,
-        bag_key = None,
-        country = None,
-        currency = None,
-        language = None,
-        context_callback = None,
+        username=None,
+        password=None,
+        session_id=None,
+        bag_key=None,
+        country=None,
+        currency=None,
+        language=None,
+        context_callback=None,
         *args,
         **kwargs
     ):
@@ -42,13 +43,13 @@ class BudyAdapter(base.BaseAdapter):
     def get_context(self):
         context = base.BaseAdapter.get_context(self)
         context.update(
-            username = self.username,
-            password = self.password,
-            session_id = self.session_id,
-            bag_key = self.bag_key,
-            country = self.country,
-            currency = self.currency,
-            language = self.language
+            username=self.username,
+            password=self.password,
+            session_id=self.session_id,
+            bag_key=self.bag_key,
+            country=self.country,
+            currency=self.currency,
+            language=self.language,
         )
         return context
 
@@ -81,18 +82,17 @@ class BudyAdapter(base.BaseAdapter):
 
     def get_country_c(self, country_code, *args, **kwargs):
         country = models.BDCountry.get_c(country_code)
-        if not country: return dict(
-            iso = country_code,
-            currency = kwargs.get("currency", "USD"),
-            locale = kwargs.get("locale", "en_us")
-        )
+        if not country:
+            return dict(
+                iso=country_code,
+                currency=kwargs.get("currency", "USD"),
+                locale=kwargs.get("locale", "en_us"),
+            )
         currency = country.get_currency()
         locale = country.locale
         locale = locale.lower().replace("-", "_")
         return dict(
-            iso = country.country_code,
-            currency = currency.currency_code,
-            locale = locale
+            iso=country.country_code, currency=currency.currency_code, locale=locale
         )
 
     def list_countries(self, *args, **kwargs):
@@ -265,15 +265,13 @@ class BudyAdapter(base.BaseAdapter):
         return subscription.create_s()
 
     def login_account(self, username, password, *args, **kwargs):
-        account = models.BDAccount.login(
-            username = username,
-            password = password
-        )
+        account = models.BDAccount.login(username=username, password=password)
         old_key = self.bag_key
         self.username = username
         self.password = password
         self._key_bag()
-        if old_key: account.bag.merge_s(old_key)
+        if old_key:
+            account.bag.merge_s(old_key)
         return account
 
     def me_account(self, *args, **kwargs):
@@ -283,7 +281,7 @@ class BudyAdapter(base.BaseAdapter):
     def create_account(self, account, *args, **kwargs):
         pre_enabled = kwargs.get("pre_enabled", False)
         account = models.BDAccount(account.model)
-        return account.create_s(pre_enabled = pre_enabled)
+        return account.create_s(pre_enabled=pre_enabled)
 
     def update_account(self, account, *args, **kwargs):
         account = models.BDAccount(account.model)
@@ -295,11 +293,11 @@ class BudyAdapter(base.BaseAdapter):
         models.BDAccount.confirm_s(token)
 
     def recover_password_account(self, username, *args, **kwargs):
-        account = models.BDAccount.get_l(username = username)
+        account = models.BDAccount.get_l(username=username)
         account.recover_s()
 
     def reset_password_account(self, username, password, token, *args, **kwargs):
-        account = models.BDAccount.get_l(username = username)
+        account = models.BDAccount.get_l(username=username)
         account.reset_s(password, token)
 
     def avatar_me_account(self, *args, **kwargs):
@@ -314,180 +312,176 @@ class BudyAdapter(base.BaseAdapter):
             "last_name",
             "postal_code",
             "phone_number",
-            "address"
+            "address",
         ]
 
     def create_address(self, address, *args, **kwargs):
         address = models.BDAddress(address.model)
         return address.create_s()
 
-    def addresses_account(self, account_id = None, *args, **kwargs):
-        if not account_id == None: raise appier.NotImplementedError()
+    def addresses_account(self, account_id=None, *args, **kwargs):
+        if not account_id == None:
+            raise appier.NotImplementedError()
         addresses = models.BDAccount.addresses_me()
         return addresses
 
-    def address_account(self, address_id, account_id = None, *args, **kwargs):
-        if not account_id == None: raise appier.NotImplementedError()
+    def address_account(self, address_id, account_id=None, *args, **kwargs):
+        if not account_id == None:
+            raise appier.NotImplementedError()
         account = models.BDAccount.me()
         return account.get_address(address_id)
 
-    def create_address_account(self, address, account_id = None, *args, **kwargs):
-        if not account_id == None: raise appier.NotImplementedError()
+    def create_address_account(self, address, account_id=None, *args, **kwargs):
+        if not account_id == None:
+            raise appier.NotImplementedError()
         account = models.BDAccount.me()
         address = models.BDAddress(address.model)
         return account.create_address_s(address)
 
-    def update_address_account(self, address, account_id = None, *args, **kwargs):
-        if not account_id == None: raise appier.NotImplementedError()
+    def update_address_account(self, address, account_id=None, *args, **kwargs):
+        if not account_id == None:
+            raise appier.NotImplementedError()
         account = models.BDAccount.me()
         address = models.BDAddress(address.model)
         return account.update_address_s(address)
 
-    def delete_address_account(self, address_id, account_id = None, *args, **kwargs):
-        if not account_id == None: raise appier.NotImplementedError()
+    def delete_address_account(self, address_id, account_id=None, *args, **kwargs):
+        if not account_id == None:
+            raise appier.NotImplementedError()
         account = models.BDAccount.me()
         account.delete_address_s(address_id)
 
-    def orders_account(self, account_id = None, *args, **kwargs):
-        if not account_id == None: raise appier.NotImplementedError()
+    def orders_account(self, account_id=None, *args, **kwargs):
+        if not account_id == None:
+            raise appier.NotImplementedError()
         account = models.BDAccount.me()
         return account.orders()
 
-    def empty_bag(self, bag_id = None, *args, **kwargs):
+    def empty_bag(self, bag_id=None, *args, **kwargs):
         bag_id = bag_id or self.bag_key
-        bag = models.BDBag.get_l(key = bag_id)
+        bag = models.BDBag.get_l(key=bag_id)
         return bag.empty_s()
 
-    def create_order_bag(self, bag_id = None, *args, **kwargs):
+    def create_order_bag(self, bag_id=None, *args, **kwargs):
         bag_id = bag_id or self.bag_key
-        bag = models.BDBag.get_l(key = bag_id)
+        bag = models.BDBag.get_l(key=bag_id)
         return bag.create_order_s()
 
     def get_order(self, id, *args, **kwargs):
         return models.BDOrder._get(id)
 
     def set_meta_order(self, id, name, value, *args, **kwargs):
-        order = models.BDOrder.get_l(key = id)
+        order = models.BDOrder.get_l(key=id)
         order.set_meta_s(name, value)
 
     def wait_payment_order(self, id, *args, **kwargs):
-        order = models.BDOrder.get_l(key = id)
+        order = models.BDOrder.get_l(key=id)
         return order.wait_payment_s()
 
     def pay_order(self, id, payment_data, *args, **kwargs):
-        order = models.BDOrder.get_l(key = id)
+        order = models.BDOrder.get_l(key=id)
         return order.pay_s(payment_data)
 
     def end_pay_order(self, id, payment_data, *args, **kwargs):
-        order = models.BDOrder.get_l(key = id)
+        order = models.BDOrder.get_l(key=id)
         return order.end_pay_s(payment_data)
 
     def cancel_order(self, id, cancel_data, *args, **kwargs):
-        order = models.BDOrder.get_l(key = id)
+        order = models.BDOrder.get_l(key=id)
         return order.cancel_s(cancel_data)
 
     def set_store_order(self, store_id, order_id, *args, **kwargs):
-        order = models.BDOrder.get_l(key = order_id)
+        order = models.BDOrder.get_l(key=order_id)
         order.set_store_s(store_id)
 
-    def set_shipping_address_order(self, address_id, order_id, account_id = None, *args, **kwargs):
+    def set_shipping_address_order(
+        self, address_id, order_id, account_id=None, *args, **kwargs
+    ):
         account = models.BDAccount.me()
         address = account.get_address(address_id)
-        order = models.BDOrder.get_l(key = order_id)
-        address = address.unwrap(default = True)
+        order = models.BDOrder.get_l(key=order_id)
+        address = address.unwrap(default=True)
         order.set_shipping_address_s(address)
 
-    def set_billing_address_order(self, address_id, order_id, account_id = None, *args, **kwargs):
+    def set_billing_address_order(
+        self, address_id, order_id, account_id=None, *args, **kwargs
+    ):
         account = models.BDAccount.me()
         address = account.get_address(address_id)
-        order = models.BDOrder.get_l(key = order_id)
-        address = address.unwrap(default = True)
+        order = models.BDOrder.get_l(key=order_id)
+        address = address.unwrap(default=True)
         order.set_billing_address_s(address)
 
     def set_store_shipping_order(self, order_id, *args, **kwargs):
-        order = models.BDOrder.get_l(key = order_id)
+        order = models.BDOrder.get_l(key=order_id)
         order.set_store_shipping_s()
 
     def set_store_billing_order(self, order_id, *args, **kwargs):
-        order = models.BDOrder.get_l(key = order_id)
+        order = models.BDOrder.get_l(key=order_id)
         order.set_store_billing_s()
 
     def set_ip_address_order(self, ip_address, order_id, *args, **kwargs):
-        order = models.BDOrder.get_l(key = order_id)
+        order = models.BDOrder.get_l(key=order_id)
         order.set_ip_address_s(ip_address)
 
     def set_email_order(self, email, order_id, *args, **kwargs):
-        order = models.BDOrder.get_l(key = order_id)
+        order = models.BDOrder.get_l(key=order_id)
         order.set_email_s(email)
 
     def set_gift_wrap_order(self, gift_wrap, order_id, *args, **kwargs):
-        order = models.BDOrder.get_l(key = order_id)
+        order = models.BDOrder.get_l(key=order_id)
         order.set_gift_wrap_s(gift_wrap)
 
     def set_referral_order(self, referral_id, order_id, *args, **kwargs):
-        referral = models.BDReferral.get_l(name = referral_id)
-        order = models.BDOrder.get_l(key = order_id)
+        referral = models.BDReferral.get_l(name=referral_id)
+        order = models.BDOrder.get_l(key=order_id)
         order.set_referral_s(referral)
 
     def set_voucher_order(self, voucher_id, order_id, *args, **kwargs):
-        voucher = models.BDVoucher.get_l(key = voucher_id)
-        order = models.BDOrder.get_l(key = order_id)
+        voucher = models.BDVoucher.get_l(key=voucher_id)
+        order = models.BDOrder.get_l(key=order_id)
         order.set_voucher_s(voucher)
 
     def list_card_payment_methods(self, *args, **kwargs):
         return [
+            models.BDCardPaymentMethod(id_str="visa", name="Visa", type="credit_card"),
             models.BDCardPaymentMethod(
-                id_str = "visa",
-                name = "Visa",
-                type = "credit_card"
+                id_str="mastercard", name="MasterCard", type="credit_card"
             ),
             models.BDCardPaymentMethod(
-                id_str = "mastercard",
-                name = "MasterCard",
-                type = "credit_card"
+                id_str="american_express", name="American Express", type="credit_card"
             ),
-            models.BDCardPaymentMethod(
-                id_str = "american_express",
-                name = "American Express",
-                type = "credit_card"
-            )
         ]
 
-    def get_bag(self, bag_id = None, *args, **kwargs):
+    def get_bag(self, bag_id=None, *args, **kwargs):
         self._ensure_bag()
         bag_id = bag_id or self.bag_key
         return models.BDBag._get(bag_id)
 
-    def add_bag_line(self, product_id, quantity = 1, bag_id = None, *args, **kwargs):
+    def add_bag_line(self, product_id, quantity=1, bag_id=None, *args, **kwargs):
         size = kwargs.get("size", None)
         scale = kwargs.get("scale", None)
         meta = kwargs.get("meta", None)
         convert = kwargs.get("convert", True)
         self._ensure_bag()
-        if convert: product_id = self._product_id_to_id(product_id)
+        if convert:
+            product_id = self._product_id_to_id(product_id)
         bag_id = bag_id or self.bag_key
         bag = models.BDBag._get(bag_id)
-        bag.add_line_s(
-            product_id,
-            quantity,
-            size = size,
-            scale = scale,
-            meta = meta
-        )
+        bag.add_line_s(product_id, quantity, size=size, scale=scale, meta=meta)
 
-    def remove_bag_line(self, bag_line_id, bag_id = None, *args, **kwargs):
+    def remove_bag_line(self, bag_line_id, bag_id=None, *args, **kwargs):
         self._ensure_bag()
         bag_id = bag_id or self.bag_key
-        bag = models.BDBag.get_l(key = bag_id)
+        bag = models.BDBag.get_l(key=bag_id)
         bag.remove_line_s(bag_line_id)
 
     def _product_id_to_id(self, product_id):
         api = self._get_api()
-        kwargs = {
-            "filters[]" : "product_id:equals:%s" % product_id
-        }
+        kwargs = {"filters[]": "product_id:equals:%s" % product_id}
         products = api.list_products(**kwargs)
-        if not products: return product_id
+        if not products:
+            return product_id
         first_product = products[0]
         return first_product["id"]
 
@@ -503,11 +497,13 @@ class BudyAdapter(base.BaseAdapter):
         return self.bag_key
 
     def _ensure_bag(self):
-        if self.bag_key: return
+        if self.bag_key:
+            return
         self._key_bag()
 
     def _flush_context(self):
-        if not self.context_callback: return
+        if not self.context_callback:
+            return
         context = self.get_context()
         self.context_callback(context)
 
@@ -518,15 +514,16 @@ class BudyAdapter(base.BaseAdapter):
         country = kwargs.get("country", self.country)
         currency = kwargs.get("currency", self.currency)
         language = kwargs.get("language", self.language)
-        if self.api: return self._apply_api(*args, **kwargs)
+        if self.api:
+            return self._apply_api(*args, **kwargs)
 
         api = budy.API(
-            username = username,
-            password = password,
-            session_id = session_id,
-            country = country,
-            currency = currency,
-            language = language
+            username=username,
+            password=password,
+            session_id=session_id,
+            country=country,
+            currency=currency,
+            language=language,
         )
         self.api = api
         api.bind("auth", self._on_auth)
@@ -534,7 +531,8 @@ class BudyAdapter(base.BaseAdapter):
 
     def _apply_api(self, *args, **kwargs):
         for key, value in appier.legacy.iteritems(kwargs):
-            if not value: continue
+            if not value:
+                continue
             setattr(self.api, key, value)
         return self.api
 
@@ -542,7 +540,9 @@ class BudyAdapter(base.BaseAdapter):
         self._sort(kwargs)
         self._convert(kwargs, "filter", "find_s")
 
-    def _sort(self, kwargs, delete = True):
-        if not "sort" in kwargs: return
-        if not kwargs["sort"]: return
+    def _sort(self, kwargs, delete=True):
+        if not "sort" in kwargs:
+            return
+        if not kwargs["sort"]:
+            return
         kwargs["sort"] = "%s:%s" % kwargs["sort"][0]

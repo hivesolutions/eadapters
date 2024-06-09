@@ -3,5 +3,6 @@
 
 from . import base
 
+
 class ECity(base.EBase):
     pass

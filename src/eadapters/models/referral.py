@@ -3,5 +3,6 @@
 
 from . import base
 
+
 class EReferral(base.EBase):
     pass

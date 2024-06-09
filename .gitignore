@@ -4,6 +4,11 @@ session.shelve*
 
 .DS_Store
 
+/.vscode/settings.json
+
+/.env
+/.venv
+
 /dist
 /build
 /src/eadapters.egg-info

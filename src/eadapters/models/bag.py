@@ -5,20 +5,14 @@ import appier
 
 from . import base
 
+
 class EBag(base.EBase):
 
     currency = appier.field()
 
-    total = appier.field(
-        type = float
-    )
+    total = appier.field(type=float)
 
-    lines = appier.field(
-        type = appier.references(
-            "EBagLine",
-            name = "id"
-        )
-    )
+    lines = appier.field(type=appier.references("EBagLine", name="id"))
 
     @property
     def quantity(self):

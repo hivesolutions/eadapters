@@ -9,24 +9,18 @@ from . import bd_bag_line
 
 from .. import bag
 
+
 class BDBag(bag.EBag, bd_common.BDCommon):
 
     key = appier.field()
 
     @classmethod
-    def wrap(cls, models, build = True, handler = None, **kwargs):
+    def wrap(cls, models, build=True, handler=None, **kwargs):
         def handler(model):
             lines = model.get("lines", [])
-            model.update(
-                lines = bd_bag_line.BDBagLine.wrap(lines)
-            )
+            model.update(lines=bd_bag_line.BDBagLine.wrap(lines))
 
-        return super(BDBag, cls).wrap(
-            models,
-            build = build,
-            handler = handler,
-            **kwargs
-        )
+        return super(BDBag, cls).wrap(models, build=build, handler=handler, **kwargs)
 
     @classmethod
     def _ident_name(cls):
@@ -43,20 +37,16 @@ class BDBag(bag.EBag, bd_common.BDCommon):
     def add_line_s(
         self,
         product_id,
-        quantity = 1,
-        size = None,
-        scale = None,
-        meta = None,
+        quantity=1,
+        size=None,
+        scale=None,
+        meta=None,
     ):
         api = self._get_api()
         item = bd_bag_line.BDBagLine(
-            product = product_id,
-            quantity = quantity,
-            size = size,
-            scale = scale,
-            meta = meta
+            product=product_id, quantity=quantity, size=size, scale=scale, meta=meta
         )
-        item = item.unwrap(default = True)
+        item = item.unwrap(default=True)
         line = api.add_update_line_bag(self.key, item)
         line = bd_bag_line.BDBagLine.wrap(line)
         return line

@@ -3,5 +3,6 @@
 
 from . import group
 
+
 class EBrand(group.EGroup):
     pass

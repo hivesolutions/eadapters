@@ -3,5 +3,6 @@
 
 from . import group
 
+
 class ESeason(group.EGroup):
     pass

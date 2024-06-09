@@ -3,5 +3,6 @@
 
 from . import base
 
+
 class ECredit(base.EBase):
     pass

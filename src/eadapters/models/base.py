@@ -7,11 +7,10 @@ import datetime
 
 import appier
 
+
 class EBase(appier.LocalModel):
 
-    id = dict(
-        type = int
-    )
+    id = dict(type=int)
 
     id_str = dict()
 
@@ -31,13 +30,13 @@ class EBase(appier.LocalModel):
         return re.sub("([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
 
     @classmethod
-    def string_from_timestamp(cls, timestamp, format = "%d/%m/%Y"):
+    def string_from_timestamp(cls, timestamp, format="%d/%m/%Y"):
         date = datetime.datetime.utcfromtimestamp(timestamp)
         date_string = date.strftime(format)
         return date_string
 
     @classmethod
-    def timestamp_from_string(cls, date_string, format = "%d/%m/%Y"):
+    def timestamp_from_string(cls, date_string, format="%d/%m/%Y"):
         date = datetime.datetime.strptime(date_string, format)
         date_utc = date.utctimetuple()
         timestamp = calendar.timegm(date_utc)
@@ -46,13 +45,15 @@ class EBase(appier.LocalModel):
     @classmethod
     def _get_adapter_g(cls):
         from .. import factory
+
         ref = factory.Factory.get_adapter_l()
         return ref
 
     @classmethod
     def _get_api_g(cls, *args, **kwargs):
         ref = cls._get_adapter_g()
-        if not ref: return None
+        if not ref:
+            return None
         return ref._get_api(*args, **kwargs)
 
     @classmethod
@@ -70,11 +71,13 @@ class EBase(appier.LocalModel):
 
     def _get_adapter(self, *args, **kwargs):
         cls = self.__class__
-        if not self.ref: return cls._get_adapter_g()
+        if not self.ref:
+            return cls._get_adapter_g()
         return self.ref
 
     def _get_api(self, *args, **kwargs):
         cls = self.__class__
         ref = self._get_adapter()
-        if not ref: return None
+        if not ref:
+            return None
         return ref._get_api(*args, **kwargs)

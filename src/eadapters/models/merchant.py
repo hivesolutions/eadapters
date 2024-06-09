@@ -5,6 +5,7 @@ import appier
 
 from . import base
 
+
 class EMerchant(base.EBase):
 
     name = appier.field()

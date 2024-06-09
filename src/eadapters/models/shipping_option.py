@@ -3,5 +3,6 @@
 
 from . import base
 
+
 class EShippingOption(base.EBase):
     pass

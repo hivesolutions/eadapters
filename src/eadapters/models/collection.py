@@ -3,5 +3,6 @@
 
 from . import group
 
+
 class ECollection(group.EGroup):
     pass

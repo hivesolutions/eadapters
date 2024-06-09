@@ -5,19 +5,12 @@ import appier
 
 from . import graphic
 
+
 class EProduct(graphic.EGraphic):
 
-    SIZE_ALIAS = dict(
-        thumbnail = ("70",),
-        large = ("1000",)
-    )
+    SIZE_ALIAS = dict(thumbnail=("70",), large=("1000",))
 
-    GENDER_ALIAS = dict(
-        Male = "Men",
-        Female = "Women",
-        Child = "Kid",
-        Both = "Unisex"
-    )
+    GENDER_ALIAS = dict(Male="Men", Female="Women", Child="Kid", Both="Unisex")
 
     name = appier.field()
 
@@ -33,26 +26,21 @@ class EProduct(graphic.EGraphic):
 
     ean = appier.field()
 
-    size = appier.field(
-        type = int
-    )
+    size = appier.field(type=int)
 
-    scale = appier.field(
-        type = int
-    )
+    scale = appier.field(type=int)
 
-    price = appier.field(
-        type = float
-    )
+    price = appier.field(type=float)
 
     @classmethod
-    def _get_measurements(cls, model, sort = True):
+    def _get_measurements(cls, model, sort=True):
         measurements = model.get("measurements", None)
-        if not measurements: return []
-        if sort: measurements.sort(
-            key = lambda item:\
-            (item.get("value", -1), item.get("value_s", None))
-        )
+        if not measurements:
+            return []
+        if sort:
+            measurements.sort(
+                key=lambda item: (item.get("value", -1), item.get("value_s", None))
+            )
         return measurements
 
     @classmethod
@@ -64,48 +52,61 @@ class EProduct(graphic.EGraphic):
         url = image.get(size, None)
         return url
 
-    def get_measurements(self, sort = True):
-        return self.__class__._get_measurements(self.model, sort = sort)
+    def get_measurements(self, sort=True):
+        return self.__class__._get_measurements(self.model, sort=sort)
 
-    def get_price(self, currency = "EUR", field = "totalPriceValue"):
-        if hasattr(self, "price"): return self.price
-        if not self.variants: return None
+    def get_price(self, currency="EUR", field="totalPriceValue"):
+        if hasattr(self, "price"):
+            return self.price
+        if not self.variants:
+            return None
         variant = self.variants[0]
         prices = variant.get("prices", [])
-        if not prices: return None
+        if not prices:
+            return None
         for price in prices:
             _currency = price["currencyIsoCode"]
-            if not _currency == currency: continue
+            if not _currency == currency:
+                continue
             return price[field]
         return None
 
-    def get_gender(self, default = "Male"):
-        if hasattr(self, "gender"): gender = self.gender
+    def get_gender(self, default="Male"):
+        if hasattr(self, "gender"):
+            gender = self.gender
         gender = gender or default
         return self.__class__.GENDER_ALIAS.get(gender, gender)
 
     @property
     def discount(self):
-        if not self.price: return 0.0
-        if not self.price_compare: return 0.0
+        if not self.price:
+            return 0.0
+        if not self.price_compare:
+            return 0.0
         return self.price_compare - self.price
 
     @property
     def discount_percent(self):
-        if not self.discount: return 0.0
+        if not self.discount:
+            return 0.0
         return self.discount / self.price_compare * 100.0
 
     @property
     def has_stock(self):
-        if self.quantity_hand == None: return False
-        if self.quantity_hand <= 0.0: return False
+        if self.quantity_hand == None:
+            return False
+        if self.quantity_hand <= 0.0:
+            return False
         return True
 
     @property
     def is_available(self):
-        if self.quantity_hand == None: return True
-        if self.quantity_hand > 0.0: return True
-        if self.get_measurements(): return True
+        if self.quantity_hand == None:
+            return True
+        if self.quantity_hand > 0.0:
+            return True
+        if self.get_measurements():
+            return True
         return False
 
     @property

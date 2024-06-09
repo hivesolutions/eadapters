@@ -5,6 +5,7 @@ import appier
 
 from . import base
 
+
 class EAccount(base.EBase):
 
     username = appier.field()
@@ -19,48 +20,27 @@ class EAccount(base.EBase):
 
     gender = appier.field()
 
-    birth_date = appier.field(
-        type = int
-    )
+    birth_date = appier.field(type=int)
 
     country = appier.field()
 
     phone_number = appier.field()
 
-    receive_newsletters = appier.field(
-        type = bool,
-        initial = False
-    )
+    receive_newsletters = appier.field(type=bool, initial=False)
 
-    avatar = appier.field(
-        type = appier.File
-    )
+    avatar = appier.field(type=appier.File)
 
     facebook_id = appier.field()
 
-    facebook_token = appier.field(
-        private = True
-    )
+    facebook_token = appier.field(private=True)
 
     google_id = appier.field()
 
-    google_token = appier.field(
-        private = True
-    )
+    google_token = appier.field(private=True)
 
-    bag = appier.field(
-        type = appier.reference(
-            "EBag",
-            name = "id"
-        )
-    )
+    bag = appier.field(type=appier.reference("EBag", name="id"))
 
-    wishlist = appier.field(
-        type = appier.reference(
-            "EWishlist",
-            name = "id"
-        )
-    )
+    wishlist = appier.field(type=appier.reference("EWishlist", name="id"))
 
     def tokens(self):
         return ["user"]
@@ -72,19 +52,15 @@ class EAccount(base.EBase):
             appier.not_empty("username"),
             appier.string_gt("username", 3),
             appier.not_duplicate("username", cls._name()),
-
             appier.not_null("email"),
             appier.not_empty("email"),
             appier.is_email("email"),
             appier.not_duplicate("email", cls._name()),
-
             appier.not_null("first_name"),
             appier.not_empty("first_name"),
-
             appier.is_regex("phone_number", "^\+?[0-9\s]{2,}$"),
-
             appier.equals("password_confirm", "password"),
-            appier.equals("new_password_confirm", "new_password")
+            appier.equals("new_password_confirm", "new_password"),
         ]
 
     @classmethod
@@ -92,9 +68,8 @@ class EAccount(base.EBase):
         return super(EAccount, cls).validate_new() + [
             appier.not_null("password"),
             appier.not_empty("password"),
-
             appier.not_null("password_confirm"),
-            appier.not_empty("password_confirm")
+            appier.not_empty("password_confirm"),
         ]
 
     @property
@@ -105,5 +80,6 @@ class EAccount(base.EBase):
 
     @property
     def birth_date_s(self):
-        if not self.birth_date: return None
+        if not self.birth_date:
+            return None
         return self.string_from_timestamp(self.birth_date)

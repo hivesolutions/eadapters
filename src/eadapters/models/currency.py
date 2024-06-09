@@ -5,6 +5,7 @@ import appier
 
 from . import base
 
+
 class ECurrency(base.EBase):
 
     name = appier.field()

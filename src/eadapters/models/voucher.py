@@ -3,5 +3,6 @@
 
 from . import base
 
+
 class EVoucher(base.EBase):
     pass

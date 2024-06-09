@@ -7,6 +7,7 @@ from . import bd_common
 
 from .. import referral
 
+
 class BDReferral(referral.EReferral, bd_common.BDCommon):
 
     name = appier.field()

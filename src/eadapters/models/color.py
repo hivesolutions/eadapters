@@ -3,5 +3,6 @@
 
 from . import group
 
+
 class EColor(group.EGroup):
     pass

@@ -5,19 +5,11 @@ import appier
 
 from . import base
 
+
 class EWishlistLine(base.EBase):
 
-    quantity = appier.field(
-        type = float
-    )
+    quantity = appier.field(type=float)
 
-    total = appier.field(
-        type = float
-    )
+    total = appier.field(type=float)
 
-    product = appier.field(
-        type = appier.reference(
-            "EProduct",
-            name = "id"
-        )
-    )
+    product = appier.field(type=appier.reference("EProduct", name="id"))
