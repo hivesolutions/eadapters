@@ -28,7 +28,6 @@ jobs:
           pip install black
           black . --check
         if: matrix.python-version == '3.12'
-      - run: python setup.py test
       - run: |
           pip install pytest
           pytest
