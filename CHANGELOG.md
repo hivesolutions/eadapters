@@ -9,15 +9,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+*
+
+### Changed
+
+*
+
+### Fixed
+
+*
+
+## [0.4.4] - 2025-01-03
+
+### Added
+
 * Support for MBWay
 
 ### Changed
 
 * Ran black in the codebase
-
-### Fixed
-
-*
 
 ## [0.4.3] - 2023-05-09
 
