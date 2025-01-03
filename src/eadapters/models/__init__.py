@@ -19,6 +19,7 @@ from . import credit
 from . import currency
 from . import graphic
 from . import group
+from . import mbway
 from . import _return
 from . import order
 from . import order_line
@@ -55,6 +56,7 @@ from .credit import ECredit
 from .currency import ECurrency
 from .graphic import EGraphic
 from .group import EGroup
+from .mbway import EMBWay
 from .merchant import EMerchant
 from ._return import EReturn
 from .order import EOrder
