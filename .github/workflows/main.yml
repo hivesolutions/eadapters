@@ -29,6 +29,11 @@ jobs:
           black . --check
         if: matrix.python-version == '3.12'
       - run: python setup.py test
+      - run: |
+          pip install pytest
+          pytest
+      - run: python setup.py test
+        if: matrix.python-version != '3.12' && matrix.python-version != 'latest'
   build-pypy:
     name: Build PyPy
     strategy:
@@ -44,4 +49,8 @@ jobs:
           pip install black
           black . --check
         if: matrix.python-version == '3.12'
+      - run: |
+          pip install pytest
+          pytest
       - run: pypy setup.py test
+        if: matrix.python-version != '3.12' && matrix.python-version != 'latest'
