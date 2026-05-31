@@ -137,7 +137,7 @@ class BDAccount(account.EAccount, bd_common.BDCommon):
         api.delete_address_me_account(address_id)
 
     @bd_common.handle_error
-    def orders(self):
+    def orders(self, *args, **kwargs):
         api = self._get_api()
-        orders = api.orders_me_account()
+        orders = api.orders_me_account(*args, **kwargs)
         return bd_order.BDOrder.wrap(orders)

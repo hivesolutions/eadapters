@@ -355,7 +355,7 @@ class BudyAdapter(base.BaseAdapter):
         if not account_id == None:
             raise appier.NotImplementedError()
         account = models.BDAccount.me()
-        return account.orders()
+        return account.orders(*args, **kwargs)
 
     def empty_bag(self, bag_id=None, *args, **kwargs):
         bag_id = bag_id or self.bag_key
