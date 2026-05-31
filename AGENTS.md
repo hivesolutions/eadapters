@@ -22,7 +22,6 @@ Try to run the unit tests whenever making changes to the codebase, before commit
 
 ```bash
 pip install -r requirements.txt
-pip install -r extra.txt
 python setup.py test
 ```
 
