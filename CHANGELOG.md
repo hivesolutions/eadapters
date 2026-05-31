@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+*
+
+## [0.4.5] - 2026-05-31
+
+### Fixed
+
 * Paging support when listing a customer's orders
 
 ## [0.4.4] - 2025-01-03
