@@ -432,6 +432,10 @@ class BudyAdapter(base.BaseAdapter):
         order = models.BDOrder.get_l(key=order_id)
         order.set_gift_wrap_s(gift_wrap)
 
+    def set_gift_slip_order(self, gift_slip, order_id, *args, **kwargs):
+        order = models.BDOrder.get_l(key=order_id)
+        order.set_gift_slip_s(gift_slip)
+
     def set_referral_order(self, referral_id, order_id, *args, **kwargs):
         referral = models.BDReferral.get_l(name=referral_id)
         order = models.BDOrder.get_l(key=order_id)
