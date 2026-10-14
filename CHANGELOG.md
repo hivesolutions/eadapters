@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* Support for the gift slip option in orders
+*
 
 ### Changed
 
@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 *
+
+## [0.4.6] - 2026-10-14
+
+### Added
+
+* Support for the gift slip option in orders
 
 ## [0.4.5] - 2026-05-31
 
