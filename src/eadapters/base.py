@@ -243,6 +243,9 @@ class BaseAdapter(object):
     def set_gift_wrap_order(self, gift_wrap, order_id, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def set_gift_slip_order(self, gift_slip, order_id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def set_referral_order(self, voucher_id, order_id, *args, **kwargs):
         raise appier.NotImplementedError()
 
