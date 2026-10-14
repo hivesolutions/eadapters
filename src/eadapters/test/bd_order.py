@@ -46,3 +46,34 @@ class BDOrderTest(unittest.TestCase):
 
         self.assertRaises(appier.OperationalError, lambda: order.set_gift_slip_s(True))
         self.assertEqual(len(calls), 2)
+
+    def test_set_notes_s(self):
+        calls = []
+
+        adapter = eadapters.Factory.get_adapter(name="budy")
+        adapter.api = appier.MockObject(
+            set_notes_order=lambda key, payload: calls.append((key, payload))
+        )
+
+        order = eadapters.models.BDOrder.get_l(key="key")
+        order.set_notes_s("Wrap separately")
+
+        self.assertEqual(calls, [("key", dict(notes="Wrap separately"))])
+
+        order.set_notes_s("")
+
+        self.assertEqual(
+            calls, [("key", dict(notes="Wrap separately")), ("key", dict(notes=""))]
+        )
+
+        def set_notes_order(key, payload):
+            raise appier.HTTPError(
+                appier.legacy.BytesIO(b'{"message": "Invalid model."}'), code=400
+            )
+
+        adapter.api = appier.MockObject(set_notes_order=set_notes_order)
+
+        self.assertRaises(
+            appier.OperationalError, lambda: order.set_notes_s("N" * 2001)
+        )
+        self.assertEqual(len(calls), 2)

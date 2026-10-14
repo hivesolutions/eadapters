@@ -20,3 +20,11 @@ class BaseTest(unittest.TestCase):
             appier.NotImplementedError,
             lambda: adapter.set_gift_slip_order(True, "key"),
         )
+
+    def test_set_notes_order(self):
+        adapter = eadapters.BaseAdapter()
+
+        self.assertRaises(
+            appier.NotImplementedError,
+            lambda: adapter.set_notes_order("Wrap separately", "key"),
+        )
