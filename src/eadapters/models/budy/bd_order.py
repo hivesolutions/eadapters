@@ -100,6 +100,11 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
         api.set_gift_slip_order(self.key, dict(gift_slip=gift_slip))
 
     @bd_common.handle_error
+    def set_notes_s(self, notes):
+        api = self._get_api()
+        api.set_notes_order(self.key, dict(notes=notes))
+
+    @bd_common.handle_error
     def set_referral_s(self, referral):
         api = self._get_api()
         api.set_referral_order(self.key, referral)

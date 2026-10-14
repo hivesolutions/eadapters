@@ -35,3 +35,21 @@ class BudyAdapterTest(unittest.TestCase):
         self.assertEqual(
             calls, [("key", dict(gift_slip=True)), ("other", dict(gift_slip=False))]
         )
+
+    def test_set_notes_order(self):
+        calls = []
+
+        adapter = eadapters.Factory.get_adapter(name="budy")
+        adapter.api = appier.MockObject(
+            set_notes_order=lambda key, payload: calls.append((key, payload))
+        )
+
+        adapter.set_notes_order("Wrap separately", "key")
+
+        self.assertEqual(calls, [("key", dict(notes="Wrap separately"))])
+
+        adapter.set_notes_order("", "other")
+
+        self.assertEqual(
+            calls, [("key", dict(notes="Wrap separately")), ("other", dict(notes=""))]
+        )
