@@ -85,6 +85,11 @@ class BDOrder(order.EOrder, bd_common.BDCommon):
         api.set_ip_address_order(self.key, dict(ip_address=ip_address))
 
     @bd_common.handle_error
+    def set_source_s(self, source):
+        api = self._get_api()
+        api.set_source_order(self.key, dict(source=source))
+
+    @bd_common.handle_error
     def set_email_s(self, email):
         api = self._get_api()
         api.set_email_order(self.key, dict(email=email))

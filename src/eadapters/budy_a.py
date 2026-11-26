@@ -20,6 +20,7 @@ class BudyAdapter(base.BaseAdapter):
         currency=None,
         language=None,
         context_callback=None,
+        secret_key=None,
         *args,
         **kwargs
     ):
@@ -39,6 +40,12 @@ class BudyAdapter(base.BaseAdapter):
         self.currency = currency or self.currency
         self.language = language or self.language
         self.context_callback = context_callback
+
+        # the secret key logs the adapter in as the account of the key,
+        # taking precedence over the username and password, so it's only
+        # set per instance (eg: for the visits of the storefront) and it's
+        # never read from configuration nor exposed in the context
+        self.secret_key = secret_key
 
     def get_context(self):
         context = base.BaseAdapter.get_context(self)
@@ -264,6 +271,10 @@ class BudyAdapter(base.BaseAdapter):
         subscription = models.BDSubscription(subscription.model)
         return subscription.create_s()
 
+    def create_visits(self, visits, *args, **kwargs):
+        api = self._get_api()
+        return api.create_visits(visits)
+
     def login_account(self, username, password, *args, **kwargs):
         account = models.BDAccount.login(username=username, password=password)
         old_key = self.bag_key
@@ -424,6 +435,10 @@ class BudyAdapter(base.BaseAdapter):
         order = models.BDOrder.get_l(key=order_id)
         order.set_ip_address_s(ip_address)
 
+    def set_source_order(self, source, order_id, *args, **kwargs):
+        order = models.BDOrder.get_l(key=order_id)
+        order.set_source_s(source)
+
     def set_email_order(self, email, order_id, *args, **kwargs):
         order = models.BDOrder.get_l(key=order_id)
         order.set_email_s(email)
@@ -484,6 +499,12 @@ class BudyAdapter(base.BaseAdapter):
         bag = models.BDBag.get_l(key=bag_id)
         bag.remove_line_s(bag_line_id)
 
+    def set_source_bag(self, source, bag_id=None, *args, **kwargs):
+        self._ensure_bag()
+        bag_id = bag_id or self.bag_key
+        bag = models.BDBag.get_l(key=bag_id)
+        bag.set_source_s(source)
+
     def _product_id_to_id(self, product_id):
         api = self._get_api()
         kwargs = {"filters[]": "product_id:equals:%s" % product_id}
@@ -518,6 +539,7 @@ class BudyAdapter(base.BaseAdapter):
     def _get_api(self, *args, **kwargs):
         username = kwargs.get("username", self.username)
         password = kwargs.get("password", self.password)
+        secret_key = kwargs.get("secret_key", self.secret_key)
         session_id = kwargs.get("session_id", self.session_id)
         country = kwargs.get("country", self.country)
         currency = kwargs.get("currency", self.currency)
@@ -528,6 +550,7 @@ class BudyAdapter(base.BaseAdapter):
         api = budy.API(
             username=username,
             password=password,
+            secret_key=secret_key,
             session_id=session_id,
             country=country,
             currency=currency,

@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-*
+* Setting the marketing source of bags and orders, and sending the storefront visits, in the budy adapter - [#15](https://github.com/hivesolutions/eadapters/issues/15)
 
 ### Changed
 

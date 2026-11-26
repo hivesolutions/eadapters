@@ -140,6 +140,9 @@ class BaseAdapter(object):
     def create_subscription(self, subscription, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def create_visits(self, visits, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def login_account(self, username, password, *args, **kwargs):
         raise appier.NotImplementedError()
 
@@ -237,6 +240,9 @@ class BaseAdapter(object):
     def set_ip_address_order(self, ip_address, order_id, *args, **kwargs):
         raise appier.NotImplementedError()
 
+    def set_source_order(self, source, order_id, *args, **kwargs):
+        raise appier.NotImplementedError()
+
     def set_email_order(self, email, order_id, *args, **kwargs):
         raise appier.NotImplementedError()
 
@@ -280,6 +286,9 @@ class BaseAdapter(object):
         raise appier.NotImplementedError()
 
     def remove_bag_line(self, line_id, bag_id=None, *args, **kwargs):
+        raise appier.NotImplementedError()
+
+    def set_source_bag(self, source, bag_id=None, *args, **kwargs):
         raise appier.NotImplementedError()
 
     def get_wishlist(self, wishlist_id=None, *args, **kwargs):
