@@ -63,6 +63,11 @@ class BDBag(bag.EBag, bd_common.BDCommon):
         api.merge_bag(self.key, bag_id)
 
     @bd_common.handle_error
+    def set_source_s(self, source):
+        api = self._get_api()
+        api.set_source_bag(self.key, dict(source=source))
+
+    @bd_common.handle_error
     def empty_s(self):
         api = self._get_api()
         api.empty_bag(self.key)

@@ -18,6 +18,34 @@ class BDOrderTest(unittest.TestCase):
     def tearDown(self):
         self.app.unload()
 
+    def test_set_source_s(self):
+        calls = []
+
+        adapter = eadapters.Factory.get_adapter(name="budy")
+        adapter.api = appier.MockObject(
+            set_source_order=lambda key, payload: calls.append((key, payload))
+        )
+
+        order = eadapters.models.BDOrder.get_l(key="key")
+        order.set_source_s(dict(channel="email", source="newsletter"))
+
+        self.assertEqual(
+            calls, [("key", dict(source=dict(channel="email", source="newsletter")))]
+        )
+
+        def set_source_order(key, payload):
+            raise appier.HTTPError(
+                appier.legacy.BytesIO(b'{"message": "Order not found."}'), code=404
+            )
+
+        adapter.api = appier.MockObject(set_source_order=set_source_order)
+
+        self.assertRaises(
+            appier.OperationalError,
+            lambda: order.set_source_s(dict(channel="direct")),
+        )
+        self.assertEqual(len(calls), 1)
+
     def test_set_gift_slip_s(self):
         calls = []
 
